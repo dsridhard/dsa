@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Questions Checklist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin-bottom: 8px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        li input[type="checkbox"] {
+            margin-right: 15px;
+            min-width: 20px;
+            min-height: 20px;
+            cursor: pointer;
+        }
+        .done {
+            text-decoration: line-through;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DSA Questions Checklist</h1>
+
+        <h2>Array</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Check if pair with the given Sum exits in an array</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Best Time to buy and sell stock</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find duplicates</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Products of array excepts self</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Maximum subarray</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">maximum product subarray</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find Minimum in rotated sorted array</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">search in rotated sorted array</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">3 Sum</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Container with most Water</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find the factorial of a large number</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Trapping Rain Water</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Chocolate Distribution Problem</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Insert Interval</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Merge Intevals</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Non-Overlapping Intervals</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Removing repeating frequency</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">finding out Non zero</li>
+        </ul>
+
+        <h2>Matrix</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Set Matrix Zeroes</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Spiral Matrix</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Program to find the transpose of a matrix</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">word serach</li>
+        </ul>
+
+        <h2>String</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Substring without Repeating characters</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Repeating character replacement</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Smallest window in a string containing all characters of other string</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Check whether two string are anagram of each other</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Pring all anagram together</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Check if given parentheses expression is balanced or not</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Sentence palindrome</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest palindrome Substring</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Palindromic Substring</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest common prefix</li>
+        </ul>
+
+        <h2>Linked List</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Reversed a linked list</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Detech Cycle in a linked lists</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Merge Two sorted List</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Merge K sorted Lists</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Remove Nth Node from end of list</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Reorder List</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Add 1 to a number represented as linked list</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">find the middle of a given linked list</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">delete last occurrence of an item from linked list</li>
+        </ul>
+
+        <h2>Stack & Queue</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Convert infix expression to postfix expression</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">next greater element</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Delete middle element of a Stack</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Check mirror in N-array tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">the celebrity problem</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">length of the longest valid substring</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">print right view of a binary tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">find the first circular tour that visit all petrol pumps</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">find the maximum of minimum for every window size</li>
+        </ul>
+
+        <h2>Tree</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Maximum Depth of Binary Tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Diameter of Binary Tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Lowest Common Ancestor of a Binary Search Tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Check if two trees have same structure</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Invert/Flip binary tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Maximum Path Sum</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Zigzag Level Order Traversal</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Level Order Traversal</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Serialize and Deserialize Binary Tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Right Side View</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Subtree of another tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Paths</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Construct Binary Tree from Preorder and Inorder Traversal</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Construct Binary Tree from Inorder and Postorder Traversal</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Validate Binary Search Tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Kth Smallest Element in a BST</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Kth Largest Element in a BST</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Construct BST from preorder traversal</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Lowest Common Ancestor of a Binary Tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Implement Trie (prefix Tree)</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Add and Search word</li>
+        </ul>
+
+        <h2>Heap</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Top K Frequent Elements</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">K Closest Points to Origin</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Kth Largest Element in an Array</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Merge k Sorted Lists</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">fIND MEDIAN IN A STREAM</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Largest triplet product in a stream</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Connect n ropes with minimum cost</li>
+        </ul>
+
+        <h2>Graph</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Number of Islands</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Clone Graph</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Course Schedule</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Course Schedule II</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Pacific Atlantic Water Flow</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Number of Provinces</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Graph Valid Tree</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Increasing Path in a Matrix</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Word Ladder</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Word Ladder II</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest consecutive sequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Snake and Ladder Problem</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Detect Cycle in a Directed Graph</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Bridge in a Graph</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Check Whether a Graph is Bipartite</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Shortest Path in Weighted Unweighted Graph</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find Size of the largest region in Boolean Matrix</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Topological Sort</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find the number of connected components in an undirected graph</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Flood Fill Algorithim</li>
+        </ul>
+
+        <h2>Bit Manipulation</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Number of 1 Bits</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Counting Bits</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Missing Number</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Reverse Bits</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find XOR of all subsets of a set</li>
+        </ul>
+
+        <h2>Dynamic Programming</h2>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Count ways to reach the n'th stair</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Coin Change</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">0/1 Knapsack Problem</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Increasing Subsequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Edit Distance</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Common Subsequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Palindromic Subsequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Subset Sum Problem</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Work Break Problem</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Dice Throw Problem</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Maximum sum increasing subsequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Bitonic subsequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Matrix Chain Multiplication</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Longest Common Substring</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Combination Sum</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find maximum possible stolen value from house</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Count possible decoding of a given Digit sequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Unique paths in a grid with obstacles</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">jumps over the obstacles</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Maximum sum of non-adjacent elements</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Maximum sum of subarrays</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Cutting a Rod</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Maximum Product Cutting</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Count number of ways to cover a distance</li>
+        </ul>
+
+        <h2>Misc</h2>
+        <h3>Cyclic Sort</h3>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">missing number</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">find the missing numbers</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">set mismatch</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">first missing positive</li>
+        </ul>
+        <h3>Sliding Window</h3>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Maximum Sum subarray of size K</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Repeated DNA sequence</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Mininimum Size Subarray Sum</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Subarray Porduct less than K</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Max consecutive Ones</li>
+        </ul>
+        <h3>Fast and Slow pointer</h3>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Linked List Cycle II</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Remove nthe node from the End of list</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">Find the duplicate number</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">palindrome linked list</li>
+        </ul>
+        <h3>Modified Binary search</h3>
+        <ul>
+            <li><input type="checkbox" onchange="toggleDone(this)">Search in roated soted array</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">find minimum in rotated sorted array</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">find peak element</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">single element in a sorted array</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">minimum time to arrive on time</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">capacity to ship packages within d Days</li>
+            <li><input type="checkbox" onchange="toggleDone(this)">koko eating bananas</li>
+        </ul>
+        
+        <!-- Add more topics and questions here following the same structure -->
+
+    </div>
+
+    <script>
+        // Function to handle checkbox state changes and save to localStorage
+        function toggleDone(checkbox) {
+            const listItem = checkbox.parentNode;
+            // Get the text content of the list item to use as a unique key
+            const questionText = listItem.textContent.trim();
+            if (checkbox.checked) {
+                listItem.classList.add('done');
+            } else {
+                listItem.classList.remove('done');
+            }
+            // Save the checkbox state to localStorage
+            sessionStorage.setItem(questionText, checkbox.checked);
+        }
+
+        // Function to load checkbox states from localStorage when the page loads
+        function loadCheckboxStates() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                const listItem = checkbox.parentNode;
+                const questionText = listItem.textContent.trim();
+                // Retrieve the stored state (it will be a string 'true' or 'false', or null if not found)
+                const storedState = sessionStorage.getItem(questionText);
+
+                if (storedState === 'true') { // Check if the stored state is explicitly 'true'
+                    checkbox.checked = true;
+                    listItem.classList.add('done');
+                }
+            });
+        }
+
+        // Call loadCheckboxStates when the window finishes loading
+        window.onload = loadCheckboxStates;
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+----------------------Array------------------------
+Check if pair  with the given Sum exits in an array
+Best Time to buy and sell stock
+Find duplicates 
+Products of array excepts self
+Maximum subarray 
+maximum product subarray
+Find Minimum in rotated sorted array
+search in rotated sorted array
+3 Sum
+Container with most Water 
+Find the factorial of a large number
+Trapping Rain Water 
+Chocolate Distribution Problem
+Insert Interval
+Merge Intevals
+Non-Overlapping Intervals
+Removing repeating frequency 
+finding out  Non zero
+
+----------------------Matrix------------------------
+Set Matrix Zeroes
+Spiral Matrix 
+Program to find the transpose of a matrix 
+word serach 
+
+
+---------------------String-------------------------
+Longest Substring without Repeating characters 
+Longest Repeating character replacement
+Smallest window  in a string containing all characters of other string 
+Check whether two string are anagram of each  other 
+Pring all anagram together 
+Check if given parentheses expression is balanced or not 
+Sentence palindrome 
+Longest palindrome Substring
+Palindromic Substring
+Longest common prefix  
+
+-------------------Linked List-----------------------
+Reversed a linked list 
+Detech Cycle in a linked lists 
+Merge Two sorted List
+Merge  K sorted Lists 
+Remove  Nth Node from end of list 
+Reorder List 
+Add 1 to a number represented as linked list 
+find the middle of a given linked list 
+delete last occurrence of an item from linked list 
+
+
+
+-------------------Stack & Queue ----------------------
+Convert infix expression to postfix expression
+next greater element
+Delete middle element of a Stack 
+Check mirror in N-array tree 
+the celebrity problem 
+length of the longest valid substring 
+print right view of a binary tree 
+find the first circular tour that visit all petrol pumps 
+find the maximum of minimum for every window size 
+
+
+
+----------------------- Tree --------------------------
+
+Maximum Depth of Binary Tree 
+Diameter of Binary Tree 
+Lowest Common Ancestor of a Binary Search Tree 
+Check if two trees have same structure 
+Invert/Flip binary tree
+Binary Tree Maximum Path Sum 
+Binary Tree Zigzag Level Order Traversal 
+Binary Tree Level Order Traversal 
+Serialize and Deserialize Binary Tree 
+Binary Tree Right Side View 
+Subtree of another tree 
+Binary Tree Paths 
+Construct Binary Tree from Preorder and Inorder Traversal 
+Construct Binary Tree from Inorder and Postorder Traversal 
+Validate Binary Search Tree 
+Kth Smallest Element in a BST 
+Kth Largest Element in a BST 
+Construct BST from preorder traversal 
+Lowest Common Ancestor of a Binary Tree 
+Implement Trie (prefix Tree)
+Add and Search word
+
+
+----------------------Heap-------------------------------
+Top K Frequent Elements 
+K Closest Points to Origin 
+Kth Largest Element in an Array 
+Merge k Sorted Lists 
+fIND MEDIAN IN A STREAM
+Largest triplet product in a stream 
+Connect n ropes with minimum cost 
+
+
+----------------------Graph------------------------------
+Number of Islands 
+Clone Graph 
+Course Schedule 
+Course Schedule II 
+Pacific Atlantic Water Flow 
+Number of Provinces 
+Graph Valid Tree
+Longest Increasing Path in a Matrix 
+Word Ladder 
+Word Ladder II 
+Longest consecutive sequence
+Snake and Ladder Problem
+Detect Cycle in a Directed Graph
+Bridge in a Graph
+Check Whether a Graph is Bipartite 
+Shortest Path in Weighted Unweighted Graph 
+Find Size of the largest region in Boolean Matrix 
+Topological Sort 
+Find the number of connected components in an undirected graph 
+Flood Fill Algorithim 
+
+------------------------Bit Manipulation-----------------
+Number of   1   Bits 
+Counting Bits
+Missing Number
+Reverse Bits 
+Find XOR of all subsets of a set 
+
+-----------------------Dynamic Programming-----------------
+Count ways to reach the n'th stair 
+Coin Change 
+0/1 Knapsack Problem
+Longest Increasing Subsequence 
+Edit Distance 
+Longest Common Subsequence 
+Longest Palindromic Subsequence 
+Subset Sum Problem
+Work Break Problem 
+Dice Throw Problem 
+Maximum sum increasing subsequence 
+Longest Bitonic subsequence 
+Matrix Chain Multiplication 
+Longest Common Substring 
+Combination Sum
+Subset Sum Problem
+Find maximum possible stolen value from house 
+Count possible decoding of a given Digit sequence
+Unique paths in a grid with obstacles 
+jumps over the obstacles 
+Maximum sum of non-adjacent elements 
+Maximum sum of subarrays 
+Cutting a Rod 
+Maximum Product Cutting
+Count number of ways to cover a distance 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------Misc-------
+
+Cyclic Sort 
+Cyclic sort is an efficient appoarch to solve problems where numbers are consecutively problems where number are consecutively
+ordered and must be placed in the correct index
+
+
+
+Question to solve 
+missing number 
+find the missing numbers 
+set mismatch 
+first missing positive 
+
+Sliding Window
+A Sliding window is a subarray or substring that moves over data to solve problem efficiently in liner time 
+
+
+Question to solve 
+Maximum Sum subarray of size K 
+Repeated DNA sequence 
+Mininimum Size Subarray Sum 
+Subarray Porduct less than K 
+Max consecutive Ones 
+
+
+Fast and Slow pointer 
+This technique uses two pointers moving at different speeds to solve problem involving cycles. such as finding the middle of a list,
+detecting  loops or checking for palindrome.
+
+Question to Solve 
+Linked List Cycle II 
+Remove nthe node from the End of list 
+Find the duplicate number 
+palindrome linked list 
+
+
+
+Modified Binary search 
+A modieified version of binary search that applies to rotate array unsorted array or specilized condition
+
+Question to Solve 
+
+Search in roated soted array 
+find minimum in rotated sorted array 
+find peak  element 
+single element in a sorted array 
+minimum time to arrive on time 
+capacity to ship packages within d Days 
+koko eating bananas
