@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DSA Progress (Array Based)</title>
+</head>
+<body>
+
+<h2>DSA Progress Tracker</h2>
+
+<form id="dsaForm">
+    <label>
+        <input type="checkbox" data-problem="Implement Trie (prefix Tree)">
+        Implement Trie (prefix Tree)
+    </label><br><br>
+
+    <label>
+        <input type="checkbox" data-problem="Construct BST from preorder traversal">
+        Construct BST from preorder traversal
+    </label><br><br>
+
+    <label>
+        <input type="checkbox" data-problem="K Closest Points to Origin">
+        K Closest Points to Origin
+    </label><br><br>
+
+    <label>
+        <input type="checkbox" data-problem="Kth Largest Element in a BST">
+        Kth Largest Element in a BST
+    </label><br><br>
+
+    <label>
+        <input type="checkbox" data-problem="Lowest Common Ancestor of a Binary Tree">
+        Lowest Common Ancestor of a Binary Tree
+    </label><br><br>
+
+    <button type="submit">Save Progress</button>
+</form>
+
+<pre id="output"></pre>
+
+<script>
+    // ✅ Array that stores DSA progress
+    const dsaProgress = [];
+
+    document.getElementById("dsaForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // clear old data
+        dsaProgress.length = 0;
+
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach(cb => {
+            dsaProgress.push({
+                problem: cb.dataset.problem,
+                completed: cb.checked
+            });
+        });
+
+        // show result on UI (for debugging / learning)
+        document.getElementById("output").textContent =
+            JSON.stringify(dsaProgress, null, 4);
+
+        console.log(dsaProgress);
+    });
+</script>
+
+</body>
+</html>

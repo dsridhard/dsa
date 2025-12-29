@@ -1,373 +1,1825 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" type="image/png" href="favicon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <title>DSA Questions Checklist</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #0056b3;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #0056b3;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-         h3 {
-            color: #e0b013;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            background: #f9f9f9;
-            margin-bottom: 8px;
-            padding: 10px 15px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        li input[type="checkbox"] {
-            margin-right: 15px;
-            min-width: 20px;
-            min-height: 20px;
-            cursor: pointer;
-        }
-        .done {
-            text-decoration: line-through;
-            color: #888;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #0056b3;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #0056b3;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        margin-top: 30px;
+      }
+      h3 {
+        color: #e0b013;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background: #f9f9f9;
+        margin-bottom: 8px;
+        padding: 10px 15px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      li input[type="checkbox"] {
+        margin-right: 15px;
+        min-width: 20px;
+        min-height: 20px;
+        cursor: pointer;
+      }
+      .done {
+        text-decoration: line-through;
+        color: #888;
+      }
+      .tech-info {
+        display: none;
+        font-size: 0.85em;
+        color: #666;
+        margin-top: 5px;
+        padding-left: 10px;
+        border-left: 3px solid #eee;
+      }
+      .tech-info.active {
+        display: block;
+      }
+      .best-highlight {
+        color: #2e7d32;
+        font-weight: 600;
+      }
+      .question-text {
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        padding-right: 20px;
+        display: inline-block;
+      }
+      .question-text::after {
+        content: "▼";
+        font-size: 0.7em;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s;
+        color: #aaa;
+      }
+      .question-text.active::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+      .nav-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0056b3;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .nav-btn:hover {
+        background-color: #004494;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>DSA Questions Checklist</h1>
+      <div class="controls">
+        <a href="./patterns.html" class="nav-btn">Patterns</a>
+      </div>
+      <h1>DSA Questions Checklist</h1>
 
-        <h2>Array</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Check if pair with the given Sum exits in an array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Best Time to buy and sell stock</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find duplicates</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Products of array excepts self</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum subarray</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">maximum product subarray</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find Minimum in rotated sorted array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">search in rotated sorted array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">3 Sum</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Container with most Water</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find the factorial of a large number</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Trapping Rain Water</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Chocolate Distribution Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Insert Interval</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Merge Intevals</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Non-Overlapping Intervals</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Removing repeating frequency</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">finding out Non zero</li>
-        </ul>
+      <h2>Array</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Check if pair with the given Sum exits in an array</span
+            ><span class="tech-info"
+              >Best: Hashing (HashSet) | Alt: Sorting + Two Pointers</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Best Time to buy and sell stock</span
+            ><span class="tech-info"
+              >Best: Single Pass (Greedy) | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Find duplicates</span
+            ><span class="tech-info"
+              >Best: Fast & Slow Pointers (Floyd's) | Alt: Hashing</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Products of array excepts self</span
+            ><span class="tech-info"
+              >Best: Prefix & Suffix Products | Alt: Division Method</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum subarray</span
+            ><span class="tech-info"
+              >Best: Kadane’s Algorithm | Alt: Divide and Conquer</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">maximum product subarray</span
+            ><span class="tech-info"
+              >Best: Modified Kadane’s | Alt: Two Passes</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Find Minimum in rotated sorted array</span
+            ><span class="tech-info"
+              >Best: Modified Binary Search | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">search in rotated sorted array</span
+            ><span class="tech-info"
+              >Best: Modified Binary Search | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">3 Sum</span
+            ><span class="tech-info"
+              >Best: Sorting + Two Pointers | Alt: Hashing</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Container with most Water</span
+            ><span class="tech-info"
+              >Best: Two Pointers | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Find the factorial of a large number</span
+            ><span class="tech-info"
+              >Best: Array-based Multiplication | Alt: BigInteger Class</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Trapping Rain Water</span
+            ><span class="tech-info"
+              >Best: Two Pointers | Alt: Dynamic Programming</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Chocolate Distribution Problem</span
+            ><span class="tech-info"
+              >Best: Sorting + Sliding Window | Alt: Recursion</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Insert Interval</span
+            ><span class="tech-info"
+              >Best: Linear Scan | Alt: Binary Search + Merge</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Merge Intevals</span
+            ><span class="tech-info"
+              >Best: Sorting + Linear Scan | Alt: Graph (Connected
+              Components)</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Non-Overlapping Intervals</span
+            ><span class="tech-info"
+              >Best: Greedy (Sort by end time) | Alt: Dynamic Programming</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Removing repeating frequency</span
+            ><span class="tech-info"
+              >Best: Greedy + Sorting/Priority Queue | Alt: Hashing + Set</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">finding out Non zero</span
+            ><span class="tech-info">Best: Two Pointers | Alt: New Array</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Matrix</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Set Matrix Zeroes</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Spiral Matrix</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Program to find the transpose of a matrix</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Word Search</li>
-        </ul>
+      <h2>Matrix</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Set Matrix Zeroes</span
+            ><span class="tech-info"
+              >Best: In-place (First Row/Col) | Alt: Extra Arrays</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Spiral Matrix</span
+            ><span class="tech-info"
+              >Best: Simulation (Layer-by-Layer) | Alt: Recursion</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Program to find the transpose of a matrix</span
+            ><span class="tech-info"
+              >Best: In-place Swap | Alt: New Matrix</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Word Search</span
+            ><span class="tech-info">Best: Backtracking (DFS) | Alt: -</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>String</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Substring without Repeating characters</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Repeating character replacement</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Smallest window in a string containing all characters of other string</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Check whether two string are anagram of each other</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Print all anagram together</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Check if given parentheses expression is balanced or not</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Sentence palindrome</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest palindrome Substring</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Palindromic Substring</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest common prefix</li>
-        </ul>
+      <h2>String</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Longest Substring without Repeating characters</span
+            ><span class="tech-info"
+              >Best: Sliding Window (Map/Set) | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Longest Repeating character replacement</span
+            ><span class="tech-info"
+              >Best: Sliding Window | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Smallest window in a string containing all characters of other
+              string</span
+            ><span class="tech-info"
+              >Best: Sliding Window + Frequency Map | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Check whether two string are anagram of each other</span
+            ><span class="tech-info"
+              >Best: Frequency Array (Hash) | Alt: Sorting</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Print all anagram together</span
+            ><span class="tech-info"
+              >Best: HashMap (Sorted Key) | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Check if given parentheses expression is balanced or not</span
+            ><span class="tech-info"
+              >Best: Stack | Alt: Counter (if single type)</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Sentence palindrome</span
+            ><span class="tech-info"
+              >Best: Two Pointers | Alt: Filter + Reverse</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest palindrome Substring</span
+            ><span class="tech-info">Best: Expand Around Center | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Palindromic Substring</span
+            ><span class="tech-info">Best: Expand Around Center | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest common prefix</span
+            ><span class="tech-info"
+              >Best: Horizontal Scanning | Alt: Trie</span
+            >
+          </div>
+        </li>
+      </ul>
 
-        <h2>Linked List</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Reversed a linked list</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Detect Cycle in a linked lists</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Merge Two sorted List</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Merge K sorted Lists</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Remove Nth Node from end of list</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Reorder List</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Add 1 to a number represented as linked list</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">find the middle of a given linked list</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">delete last occurrence of an item from linked list</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Intersection of two linked lists</li>
-        </ul>
+      <h2>Linked List</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Reversed a linked list</span
+            ><span class="tech-info"
+              >Best: Iterative (3 Pointers) | Alt: Recursive</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Detect Cycle in a linked lists</span
+            ><span class="tech-info"
+              >Best: Fast & Slow Pointers | Alt: Hashing</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Merge Two sorted List</span
+            ><span class="tech-info"
+              >Best: Iterative (Dummy Node) | Alt: Recursive</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Merge K sorted Lists</span
+            ><span class="tech-info"
+              >Best: Min-Heap | Alt: Divide & Conquer</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Remove Nth Node from end of list</span
+            ><span class="tech-info"
+              >Best: Two Pointers (Gap Method) | Alt: Two Pass</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Reorder List</span
+            ><span class="tech-info"
+              >Best: Find Mid + Reverse + Merge | Alt: Stack</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Add 1 to a number represented as linked list</span
+            ><span class="tech-info"
+              >Best: Reverse + Add + Reverse | Alt: Recursion</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >find the middle of a given linked list</span
+            ><span class="tech-info"
+              >Best: Fast & Slow Pointers | Alt: Length Calculation</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >delete last occurrence of an item from linked list</span
+            ><span class="tech-info"
+              >Best: Traversal | Alt: Reverse + Delete First</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Intersection of two linked lists</span
+            ><span class="tech-info"
+              >Best: Two Pointers (Switch Heads) | Alt: Hashing</span
+            >
+          </div>
+        </li>
+      </ul>
 
-        <h2>Stack & Queue</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Convert infix expression to postfix expression</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">next greater element</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Delete middle element of a Stack</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Check mirror in N-array tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">the celebrity problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">length of the longest valid substring</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">print right view of a binary tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">find the first circular tour that visit all petrol pumps</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">find the maximum of minimum for every window size</li>
-        </ul>
+      <h2>Stack & Queue</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Convert infix expression to postfix expression</span
+            ><span class="tech-info"
+              >Best: Stack (Shunting Yard) | Alt: Recursion</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">next greater element</span
+            ><span class="tech-info"
+              >Best: Monotonic Stack | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Delete middle element of a Stack</span
+            ><span class="tech-info"
+              >Best: Recursion | Alt: Auxiliary Stack</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Check mirror in N-array tree</span
+            ><span class="tech-info">Best: Recursion | Alt: Queue (BFS)</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">the celebrity problem</span
+            ><span class="tech-info"
+              >Best: Two Pointers / Stack | Alt: Matrix Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >length of the longest valid substring</span
+            ><span class="tech-info">Best: Stack / Counters | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">print right view of a binary tree</span
+            ><span class="tech-info"
+              >Best: BFS / DFS (Reverse Preorder) | Alt: -</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >find the first circular tour that visit all petrol pumps</span
+            ><span class="tech-info"
+              >Best: Greedy (Single Pass) | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >find the maximum of minimum for every window size</span
+            ><span class="tech-info"
+              >Best: Monotonic Stack | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+      </ul>
 
-        <h2>Tree</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum Depth of Binary Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Diameter of Binary Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Lowest Common Ancestor of a Binary Search Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Check if two trees have same structure</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Invert/Flip binary tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Maximum Path Sum</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Zigzag Level Order Traversal</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Level Order Traversal</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Serialize and Deserialize Binary Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Right Side View</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Subtree of another tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Binary Tree Paths</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Construct Binary Tree from Preorder and Inorder Traversal</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Construct Binary Tree from Inorder and Postorder Traversal</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Validate Binary Search Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Kth Smallest Element in a BST</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Kth Largest Element in a BST</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Construct BST from preorder traversal</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Lowest Common Ancestor of a Binary Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Implement Trie (prefix Tree)</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Add and Search word</li>
-             <li><input type="checkbox" onchange="toggleDone(this)">Symmetric Tree</li>
-        </ul>
+      <h2>Tree</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum Depth of Binary Tree</span
+            ><span class="tech-info">Best: DFS | Alt: BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Diameter of Binary Tree</span
+            ><span class="tech-info">Best: DFS (Height) | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Lowest Common Ancestor of a Binary Search Tree</span
+            ><span class="tech-info"
+              >Best: Iterative (BST Property) | Alt: Recursive</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Check if two trees have same structure</span
+            ><span class="tech-info">Best: Recursion | Alt: Iterative</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Invert/Flip binary tree</span
+            ><span class="tech-info">Best: Recursion | Alt: BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Binary Tree Maximum Path Sum</span
+            ><span class="tech-info">Best: DFS (Post-order) | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Binary Tree Zigzag Level Order Traversal</span
+            ><span class="tech-info">Best: BFS (Deque) | Alt: DFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Binary Tree Level Order Traversal</span
+            ><span class="tech-info">Best: BFS | Alt: DFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Serialize and Deserialize Binary Tree</span
+            ><span class="tech-info">Best: Preorder (DFS) | Alt: BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Binary Tree Right Side View</span
+            ><span class="tech-info">Best: BFS / DFS | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Subtree of another tree</span
+            ><span class="tech-info"
+              >Best: Preorder Matching / Recursion | Alt: Merkle Tree</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Binary Tree Paths</span
+            ><span class="tech-info">Best: DFS | Alt: BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Construct Binary Tree from Preorder and Inorder Traversal</span
+            ><span class="tech-info">Best: Recursion + Map | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Construct Binary Tree from Inorder and Postorder Traversal</span
+            ><span class="tech-info">Best: Recursion + Map | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Validate Binary Search Tree</span
+            ><span class="tech-info"
+              >Best: Recursion (Range) | Alt: Inorder (Sorted)</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Kth Smallest Element in a BST</span
+            ><span class="tech-info"
+              >Best: Inorder Traversal | Alt: Augmented Tree</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Kth Largest Element in a BST</span
+            ><span class="tech-info"
+              >Best: Reverse Inorder | Alt: Augmented Tree</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Construct BST from preorder traversal</span
+            ><span class="tech-info"
+              >Best: Recursion (Boundaries) | Alt: Iterative</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Lowest Common Ancestor of a Binary Tree</span
+            ><span class="tech-info"
+              >Best: Recursion | Alt: Parent Pointers</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Implement Trie (prefix Tree)</span
+            ><span class="tech-info">Best: Array/Map Nodes | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Add and Search word</span
+            ><span class="tech-info">Best: Trie DFS | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Symmetric Tree</span
+            ><span class="tech-info">Best: Recursion | Alt: Iterative</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Heap</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Top K Frequent Elements</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">K Closest Points to Origin</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Kth Largest Element in an Array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Merge K Sorted Lists</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">fIND MEDIAN IN A STREAM</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Largest triplet product in a stream</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Connect n ropes with minimum cost</li>
-        </ul>
+      <h2>Heap</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Top K Frequent Elements</span
+            ><span class="tech-info"
+              >Best: Min-Heap / Bucket Sort | Alt: Sorting</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">K Closest Points to Origin</span
+            ><span class="tech-info">Best: Max-Heap | Alt: QuickSelect</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Kth Largest Element in an Array</span
+            ><span class="tech-info">Best: QuickSelect | Alt: Min-Heap</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Merge K Sorted Lists</span
+            ><span class="tech-info"
+              >Best: Min-Heap | Alt: Divide & Conquer</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">fIND MEDIAN IN A STREAM</span
+            ><span class="tech-info"
+              >Best: Two Heaps | Alt: Insertion Sort</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Largest triplet product in a stream</span
+            ><span class="tech-info"
+              >Best: Min-Heap (Size 3) | Alt: Sorting</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Connect n ropes with minimum cost</span
+            ><span class="tech-info">Best: Min-Heap | Alt: Sorting</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Graph</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Number of Islands</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Clone Graph</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Course Schedule</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Course Schedule II</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Pacific Atlantic Water Flow</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Number of Provinces</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Graph Valid Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Increasing Path in a Matrix</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Word Ladder</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Word Ladder II</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest consecutive sequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Snake and Ladder Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Detect Cycle in a Directed Graph</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Bridge in a Graph</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Check Whether a Graph is Bipartite</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Shortest Path in Weighted Unweighted Graph</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find Size of the largest region in Boolean Matrix</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Topological Sort</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find the number of connected components in an undirected graph</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Flood Fill Algorithim</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Network Delay Time</li>
-        </ul>
-        <h3>Union-Find (DSU)</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Number of Provinces</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Number of Connected Components in an Undirected Graph</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Graph Valid Tree</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Redundant Connection</li>
-        </ul>
-        <h3>Topological Sort</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Course Schedule</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Course Schedule II</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Alien Dictionary</li>
-        </ul>
+      <h2>Graph</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Number of Islands</span
+            ><span class="tech-info">Best: DFS / BFS | Alt: Union-Find</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Clone Graph</span
+            ><span class="tech-info">Best: DFS + Map | Alt: BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Course Schedule</span
+            ><span class="tech-info"
+              >Best: Topological Sort (Kahn's) | Alt: DFS</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Course Schedule II</span
+            ><span class="tech-info">Best: Topological Sort | Alt: DFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Pacific Atlantic Water Flow</span
+            ><span class="tech-info">Best: DFS/BFS from borders | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Number of Provinces</span
+            ><span class="tech-info">Best: DFS/BFS | Alt: Union-Find</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Graph Valid Tree</span
+            ><span class="tech-info">Best: Union-Find | Alt: DFS/BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Longest Increasing Path in a Matrix</span
+            ><span class="tech-info"
+              >Best: DFS + Memoization | Alt: Topo Sort</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Word Ladder</span
+            ><span class="tech-info">Best: BFS | Alt: Bidirectional BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Word Ladder II</span
+            ><span class="tech-info">Best: BFS + DFS | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest consecutive sequence</span
+            ><span class="tech-info">Best: HashSet | Alt: Sorting</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Snake and Ladder Problem</span
+            ><span class="tech-info">Best: BFS | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Detect Cycle in a Directed Graph</span
+            ><span class="tech-info"
+              >Best: DFS (Recursion Stack) | Alt: Kahn's</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Bridge in a Graph</span
+            ><span class="tech-info"
+              >Best: Tarjan's Algo | Alt: Remove Edge + BFS</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Check Whether a Graph is Bipartite</span
+            ><span class="tech-info">Best: BFS/DFS (Coloring) | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Shortest Path in Weighted Unweighted Graph</span
+            ><span class="tech-info">Best: BFS | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Find Size of the largest region in Boolean Matrix</span
+            ><span class="tech-info">Best: DFS | Alt: BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Topological Sort</span
+            ><span class="tech-info">Best: Kahn's Algo | Alt: DFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Find the number of connected components in an undirected
+              graph</span
+            ><span class="tech-info">Best: DFS/BFS | Alt: Union-Find</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Flood Fill Algorithim</span
+            ><span class="tech-info">Best: BFS/DFS | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Network Delay Time</span
+            ><span class="tech-info">Best: Dijkstra's | Alt: Bellman-Ford</span>
+          </div>
+        </li>
+      </ul>
+      <h3>Union-Find (DSU)</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Number of Provinces</span
+            ><span class="tech-info">Best: Union-Find | Alt: DFS/BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Number of Connected Components in an Undirected Graph</span
+            ><span class="tech-info">Best: Union-Find | Alt: DFS/BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Graph Valid Tree</span
+            ><span class="tech-info">Best: Union-Find | Alt: DFS/BFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Redundant Connection</span
+            ><span class="tech-info">Best: Union-Find | Alt: DFS</span>
+          </div>
+        </li>
+      </ul>
+      <h3>Topological Sort</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Course Schedule</span
+            ><span class="tech-info">Best: Kahn's Algo | Alt: DFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Course Schedule II</span
+            ><span class="tech-info">Best: Kahn's Algo | Alt: DFS</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Alien Dictionary</span
+            ><span class="tech-info">Best: Topological Sort | Alt: -</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Bit Manipulation</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Number of 1 Bits</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Counting Bits</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Missing Number</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Reverse Bits</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find XOR of all subsets of a set</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Single Number</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Single Number II</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Power of Two</li>
-        </ul>
+      <h2>Bit Manipulation</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Number of 1 Bits</span
+            ><span class="tech-info">Best: n & (n-1) | Alt: Shift Loop</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Counting Bits</span
+            ><span class="tech-info">Best: DP | Alt: Popcount</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Missing Number</span
+            ><span class="tech-info">Best: XOR | Alt: Sum Formula</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Reverse Bits</span
+            ><span class="tech-info"
+              >Best: Bitwise Shift | Alt: Divide & Conquer</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Find XOR of all subsets of a set</span
+            ><span class="tech-info"
+              >Best: Math (0 if N>1) | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Single Number</span
+            ><span class="tech-info">Best: XOR | Alt: HashSet</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Single Number II</span
+            ><span class="tech-info"
+              >Best: Bitwise Counters | Alt: HashMap</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Power of Two</span
+            ><span class="tech-info">Best: n & (n-1) | Alt: Iterative</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Dynamic Programming</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Count ways to reach the n'th stair</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Coin Change</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">0/1 Knapsack Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Increasing Subsequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Edit Distance</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Common Subsequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Palindromic Subsequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Subset Sum Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Word Break Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Dice Throw Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum sum increasing subsequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Bitonic subsequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Matrix Chain Multiplication</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Subset Sum Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Longest Common Substring</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Combination Sum</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find maximum possible stolen value from house</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Count possible decoding of a given Digit sequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Unique paths in a grid with obstacles</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">jumps over the obstacles</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum sum of non-adjacent elements</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum sum of subarrays</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Cutting a Rod</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum Product Cutting</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Count number of ways to cover a distance</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Climbing Stairs</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Fibonacci Number</li>
-        </ul>
+      <h2>Dynamic Programming</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Count ways to reach the n'th stair</span
+            ><span class="tech-info"
+              >Best: DP (Fibonacci) | Alt: Recursion</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Coin Change</span
+            ><span class="tech-info"
+              >Best: DP (Bottom-up) | Alt: Recursion+Memo</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">0/1 Knapsack Problem</span
+            ><span class="tech-info"
+              >Best: DP (Bottom-up) | Alt: Recursion+Memo</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest Increasing Subsequence</span
+            ><span class="tech-info"
+              >Best: Binary Search O(NlogN) | Alt: DP O(N^2)</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Edit Distance</span
+            ><span class="tech-info">Best: DP (2D) | Alt: Recursion+Memo</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest Common Subsequence</span
+            ><span class="tech-info">Best: DP (2D) | Alt: Recursion+Memo</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest Palindromic Subsequence</span
+            ><span class="tech-info"
+              >Best: DP (2D) | Alt: LCS with Reverse</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Subset Sum Problem</span
+            ><span class="tech-info"
+              >Best: DP (Bottom-up) | Alt: Recursion+Memo</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Word Break Problem</span
+            ><span class="tech-info">Best: DP | Alt: Trie</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Dice Throw Problem</span
+            ><span class="tech-info">Best: DP | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum sum increasing subsequence</span
+            ><span class="tech-info">Best: DP | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest Bitonic subsequence</span
+            ><span class="tech-info">Best: LIS Left + Right | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Matrix Chain Multiplication</span
+            ><span class="tech-info"
+              >Best: DP (Intervals) | Alt: Recursion+Memo</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Subset Sum Problem</span
+            ><span class="tech-info"
+              >Best: DP (Bottom-up) | Alt: Recursion+Memo</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Longest Common Substring</span
+            ><span class="tech-info">Best: DP (2D) | Alt: Suffix Tree</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Combination Sum</span
+            ><span class="tech-info">Best: Backtracking | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Find maximum possible stolen value from house</span
+            ><span class="tech-info">Best: DP O(1) Space | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Count possible decoding of a given Digit sequence</span
+            ><span class="tech-info">Best: DP | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Unique paths in a grid with obstacles</span
+            ><span class="tech-info">Best: DP (Grid) | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">jumps over the obstacles</span
+            ><span class="tech-info">Best: Greedy | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Maximum sum of non-adjacent elements</span
+            ><span class="tech-info">Best: DP | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum sum of subarrays</span
+            ><span class="tech-info">Best: Kadane's | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Cutting a Rod</span
+            ><span class="tech-info">Best: DP | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum Product Cutting</span
+            ><span class="tech-info">Best: DP / Math | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Count number of ways to cover a distance</span
+            ><span class="tech-info">Best: DP | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Climbing Stairs</span
+            ><span class="tech-info">Best: DP | Alt: Recursion</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Fibonacci Number</span
+            ><span class="tech-info">Best: Iterative | Alt: Recursion</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Misc</h2>
-        <h3>Cyclic Sort</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">missing number</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">find the missing numbers</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">set mismatch</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">first missing positive</li>
-        </ul>
-        <h3>Sliding Window</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum Sum subarray of size K</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Repeated DNA sequence</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Mininimum Size Subarray Sum</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Subarray Porduct less than K</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Max consecutive Ones</li>
-        </ul>
-        <h3>Fast and Slow pointer</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Linked List Cycle II</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Remove Nth node from the End of list</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find the duplicate number</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">palindrome linked list</li>
-        </ul>
-        <h3>Modified Binary search</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Search in roated soted array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Find minimum in rotated sorted array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">find peak element</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">single element in a sorted array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">minimum time to arrive on time</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">capacity to ship packages within d Days</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">koko eating bananas</li>
-        </ul>
-        
-        <h3>Kadane's Algorithm</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum subarray</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Maximum product subarray</li>
-        </ul>
+      <h2>Misc</h2>
+      <h3>Cyclic Sort</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">missing number</span
+            ><span class="tech-info">Best: Cyclic Sort | Alt: XOR</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">find the missing numbers</span
+            ><span class="tech-info">Best: Cyclic Sort | Alt: HashSet</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">set mismatch</span
+            ><span class="tech-info">Best: Cyclic Sort | Alt: HashSet</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">first missing positive</span
+            ><span class="tech-info">Best: Cyclic Sort | Alt: HashSet</span>
+          </div>
+        </li>
+      </ul>
+      <h3>Sliding Window</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum Sum subarray of size K</span
+            ><span class="tech-info"
+              >Best: Sliding Window | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Repeated DNA sequence</span
+            ><span class="tech-info"
+              >Best: Sliding Window + Hash | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Mininimum Size Subarray Sum</span
+            ><span class="tech-info"
+              >Best: Sliding Window | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Subarray Porduct less than K</span
+            ><span class="tech-info"
+              >Best: Sliding Window | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Max consecutive Ones</span
+            ><span class="tech-info"
+              >Best: Sliding Window | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+      </ul>
+      <h3>Fast and Slow pointer</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Linked List Cycle II</span
+            ><span class="tech-info"
+              >Best: Fast & Slow Pointers | Alt: Hashing</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Remove Nth node from the End of list</span
+            ><span class="tech-info"
+              >Best: Fast & Slow Pointers | Alt: Two Pass</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Find the duplicate number</span
+            ><span class="tech-info"
+              >Best: Fast & Slow Pointers | Alt: Hashing</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">palindrome linked list</span
+            ><span class="tech-info"
+              >Best: Fast & Slow Pointers | Alt: Stack</span
+            >
+          </div>
+        </li>
+      </ul>
+      <h3>Modified Binary search</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Search in roated soted array</span
+            ><span class="tech-info"
+              >Best: Modified Binary Search | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Find minimum in rotated sorted array</span
+            ><span class="tech-info"
+              >Best: Modified Binary Search | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">find peak element</span
+            ><span class="tech-info"
+              >Best: Binary Search | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">single element in a sorted array</span
+            ><span class="tech-info"
+              >Best: Binary Search (XOR property) | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">minimum time to arrive on time</span
+            ><span class="tech-info"
+              >Best: Binary Search on Answer | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >capacity to ship packages within d Days</span
+            ><span class="tech-info"
+              >Best: Binary Search on Answer | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">koko eating bananas</span
+            ><span class="tech-info"
+              >Best: Binary Search on Answer | Alt: Linear Scan</span
+            >
+          </div>
+        </li>
+      </ul>
 
-        <h3>Two Pointers Technique</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Check if pair with the given Sum exits in an array</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">3 Sum</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Container with most Water</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Trapping Rain Water</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Sort Colors</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Remove Duplicates from Sorted Array</li>
-        </ul>
+      <h3>Kadane's Algorithm</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum subarray</span
+            ><span class="tech-info"
+              >Best: Kadane's Algorithm | Alt: Divide & Conquer</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Maximum product subarray</span
+            ><span class="tech-info"
+              >Best: Modified Kadane's | Alt: Two Pass</span
+            >
+          </div>
+        </li>
+      </ul>
 
-        <h3>Greedy Algorithms</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Chocolate Distribution Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Merge Intervals</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Non-Overlapping Intervals</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Activity Selection Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Fractional Knapsack</li>
-        </ul>
+      <h3>Two Pointers Technique</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Check if pair with the given Sum exits in an array</span
+            ><span class="tech-info">Best: Two Pointers | Alt: Hashing</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">3 Sum</span
+            ><span class="tech-info">Best: Two Pointers | Alt: Hashing</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Container with most Water</span
+            ><span class="tech-info"
+              >Best: Two Pointers | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Trapping Rain Water</span
+            ><span class="tech-info">Best: Two Pointers | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Sort Colors</span
+            ><span class="tech-info"
+              >Best: Two Pointers (Dutch National Flag) | Alt: Sorting</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Remove Duplicates from Sorted Array</span
+            ><span class="tech-info">Best: Two Pointers | Alt: Set</span>
+          </div>
+        </li>
+      </ul>
 
-        <h3>Backtracking</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Word Search</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Combination Sum</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Subsets</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Permutations</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">N-Queens Problem</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Sudoku Solver</li>
-        </ul>
+      <h3>Greedy Algorithms</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Chocolate Distribution Problem</span
+            ><span class="tech-info"
+              >Best: Sorting + Sliding Window | Alt: Recursion</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Merge Intervals</span
+            ><span class="tech-info"
+              >Best: Sorting + Linear Scan | Alt: Graph</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Non-Overlapping Intervals</span
+            ><span class="tech-info">Best: Greedy (Sort by End) | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Activity Selection Problem</span
+            ><span class="tech-info">Best: Greedy (Sort by End) | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Fractional Knapsack</span
+            ><span class="tech-info"
+              >Best: Greedy (Value/Weight) | Alt: DP</span
+            >
+          </div>
+        </li>
+      </ul>
 
-        <h3>Monotonic Stack / Queue</h3>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)">Next Greater Element</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Largest Rectangle in Histogram</li>
-            <li><input type="checkbox" onchange="toggleDone(this)">Sliding Window Maximum</li>
-        </ul>
+      <h3>Backtracking</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Word Search</span
+            ><span class="tech-info">Best: Backtracking | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Combination Sum</span
+            ><span class="tech-info">Best: Backtracking | Alt: DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Subsets</span
+            ><span class="tech-info"
+              >Best: Backtracking | Alt: Bit Manipulation</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Permutations</span
+            ><span class="tech-info">Best: Backtracking | Alt: Iterative</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">N-Queens Problem</span
+            ><span class="tech-info">Best: Backtracking | Alt: -</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Sudoku Solver</span
+            ><span class="tech-info">Best: Backtracking | Alt: -</span>
+          </div>
+        </li>
+      </ul>
 
-        <!-- Add more topics and questions here following the same structure -->
+      <h3>Monotonic Stack / Queue</h3>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Next Greater Element</span
+            ><span class="tech-info"
+              >Best: Monotonic Stack | Alt: Brute Force</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Largest Rectangle in Histogram</span
+            ><span class="tech-info"
+              >Best: Monotonic Stack | Alt: Divide & Conquer</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Sliding Window Maximum</span
+            ><span class="tech-info">Best: Monotonic Queue | Alt: Heap</span>
+          </div>
+        </li>
+      </ul>
 
+      <!-- Add more topics and questions here following the same structure -->
     </div>
 
     <script>
-        // Function to handle checkbox state changes and save to localStorage
-        function toggleDone(checkbox) {
-            const listItem = checkbox.parentNode;
-            // Get the text content of the list item to use as a unique key
-            const questionText = listItem.textContent.trim();
-            if (checkbox.checked) {
-                listItem.classList.add('done');
-            } else {
-                listItem.classList.remove('done');
+      let progressData = {};
+
+      // Function to handle checkbox state changes and save to localStorage
+      function toggleDone(checkbox) {
+        const listItem = checkbox.parentNode;
+        // Get the text content of the list item to use as a unique key
+        const questionSpan = listItem.querySelector(".question-text");
+        const questionText = questionSpan
+          ? questionSpan.textContent.trim()
+          : listItem.textContent.trim();
+        if (checkbox.checked) {
+          listItem.classList.add("done");
+          progressData[questionText] = true;
+        } else {
+          listItem.classList.remove("done");
+          delete progressData[questionText];
+        }
+        sessionStorage.setItem("dsaProgress", JSON.stringify(progressData));
+      }
+
+      function applyProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+          const listItem = checkbox.parentNode;
+          const questionSpan = listItem.querySelector(".question-text");
+          const questionText = questionSpan
+            ? questionSpan.textContent.trim()
+            : listItem.textContent.trim();
+
+          if (progressData[questionText]) {
+            checkbox.checked = true;
+            listItem.classList.add("done");
+          }
+        });
+      }
+
+      function loadProgressFromSession() {
+        const stored = sessionStorage.getItem("dsaProgress");
+        if (stored) {
+          progressData = JSON.parse(stored);
+          applyProgress();
+        }
+      }
+
+  
+
+      function initAccordion() {
+        // Format the Best/Alt text and setup accordion
+        const techInfos = document.querySelectorAll(".tech-info");
+        techInfos.forEach((info) => {
+          const text = info.innerHTML;
+          if (text.includes("Best:")) {
+            const parts = text.split("|");
+            const bestPart = parts[0];
+            const restPart = parts.slice(1).join("|");
+            let newHtml = `<span class="best-highlight">${bestPart}</span>`;
+            if (restPart) {
+              newHtml += ` | ${restPart}`;
             }
-            // Save the checkbox state to localStorage
-            localStorage.setItem(questionText, checkbox.checked);
-        }
+            info.innerHTML = newHtml;
+          }
+        });
 
-        // Function to load checkbox states from localStorage when the page loads
-        function loadCheckboxStates() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                const listItem = checkbox.parentNode;
-                const questionText = listItem.textContent.trim();
-                // Retrieve the stored state (it will be a string 'true' or 'false', or null if not found)
-                const storedState = localStorage.getItem(questionText);
+        const questions = document.querySelectorAll(".question-text");
+        questions.forEach((q) => {
+          q.addEventListener("click", () => {
+            q.classList.toggle("active");
+            const info = q.parentNode.querySelector(".tech-info");
+            if (info) info.classList.toggle("active");
+          });
+        });
+      }
 
-                if (storedState === 'true') { // Check if the stored state is explicitly 'true'
-                    checkbox.checked = true;
-                    listItem.classList.add('done');
-                }
-            });
-        }
-
-        // Call loadCheckboxStates when the window finishes loading
-        window.onload = loadCheckboxStates;
+      // Call loadCheckboxStates when the window finishes loading
+      window.onload = function () {
+        loadProgressFromSession();
+        initAccordion();
+      };
     </script>
-</body>
+  </body>
 </html>
