@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced JavaScript Concepts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .concept {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        strong {
+            color: #555;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Advanced JavaScript Topics</h1>
+
+    <div class="concept">
+        <h2>Closures</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>A closure is the combination of a function bundled together (enclosed) with references to its surrounding
+            state (the lexical environment). In other words, a closure gives you access to an outer function's scope
+            from an inner function. In JavaScript, closures are created every time a function is created, at function
+            creation time.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code class="language-javascript">function outerFunction() {
+    let outerVariable = 'I am outside!';
+    function innerFunction() {
+        console.log(outerVariable); // innerFunction has access to outerVariable
+    }
+    return innerFunction;
+}
+const myClosure = outerFunction();
+myClosure(); // Logs: 'I am outside!'</code></pre>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is a closure? Can you give a practical example?</li>
+            <li>How do closures help in creating private variables and methods? (The Module Pattern)</li>
+            <li>What is the relationship between closures and garbage collection?</li>
+            <li>Explain a memory leak scenario related to closures.</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>'this' Keyword</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>The 'this' keyword refers to the object it belongs to. Its value is determined by how a function is called
+            (runtime binding).</p>
+        <ul>
+            <li><strong>Global Context:</strong> In the global scope, 'this' refers to the global object (window in
+                browsers).</li>
+            <li><strong>Function Context:</strong> In a simple function call, 'this' also refers to the global object
+                (or 'undefined' in strict mode).</li>
+            <li><strong>Method Context:</strong> When a function is called as a method of an object, 'this' refers to
+                the object the method is called on.</li>
+            <li><strong>Constructor Context:</strong> In a constructor function (with `new`), 'this' refers to the newly
+                created instance.</li>
+            <li><strong>Arrow Functions:</strong> Arrow functions do not have their own 'this' context. They inherit
+                'this' from their enclosing lexical scope.</li>
+            <li><strong>Explicit Binding:</strong> Using `.call()`, `.apply()`, and `.bind()` to explicitly set the
+                value of 'this'.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is the value of 'this' in the global scope?</li>
+            <li>How does an arrow function handle 'this' differently from a regular function?</li>
+            <li>Explain the difference between `call`, `apply`, and `bind`.</li>
+            <li>What will `console.log(this)` output in a method, a simple function, and an arrow function inside a
+                method?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Prototypes and Prototypal Inheritance</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>JavaScript objects have a special hidden property `[[Prototype]]` (exposed as `__proto__`) that is either
+            `null` or references another object. This referenced object is called a "prototype". When you try to access
+            a property of an object, if the property isn't found on the object itself, the JavaScript engine looks for
+            the property on its prototype, then the prototype's prototype, and so on, until it finds the property or
+            reaches the end of the prototype chain (`null`). This is the basis of inheritance in JavaScript.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code class="language-javascript">const animal = {
+    eats: true
+};
+const rabbit = {
+    jumps: true
+};
+Object.setPrototypeOf(rabbit, animal); // Preferred over __proto__
+console.log(rabbit.eats); // true (inherited from animal)</code></pre>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is prototypal inheritance? How does it differ from classical inheritance?</li>
+            <li>What is the prototype chain?</li>
+            <li>What is the difference between `__proto__` and `prototype`?</li>
+            <li>How would you create an object that inherits from another object? (e.g., `Object.create()`)</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Asynchronous JavaScript (Callbacks, Promises, async/await)</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>JavaScript is single-threaded, meaning it can only do one thing at a time. Asynchronous operations allow
+            tasks (like fetching data from a server) to run in the background without blocking the main thread.</p>
+        <ul>
+            <li><strong>Callbacks:</strong> A function passed as an argument to another function, which is then executed
+                after an async operation has completed. Can lead to "callback hell".</li>
+            <li><strong>Promises:</strong> An object representing the eventual completion or failure of an asynchronous
+                operation. Allows for cleaner handling of async operations with `.then()`, `.catch()`, and `.finally()`.
+            </li>
+            <li><strong>async/await:</strong> Syntactic sugar built on top of Promises that makes asynchronous code look
+                and behave more like synchronous code.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is "callback hell" and how can you avoid it?</li>
+            <li>What is a Promise? Describe its states.</li>
+            <li>What are `Promise.all()`, `Promise.race()`, and `Promise.allSettled()`? When would you use them?</li>
+            <li>What is the difference between `async/await` and using `.then()`?</li>
+            <li>How do you handle errors in Promises and with `async/await`?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Event Loop</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>The Event Loop is the mechanism that enables non-blocking asynchronous operations in JavaScript. It consists
+            of the Call Stack, the Callback Queue (or Task Queue), and Web APIs.</p>
+        <ul>
+            <li>The Event Loop continuously checks if the Call Stack is empty. If it is, it takes the first message from
+                the Callback Queue and pushes it onto the Call Stack to be executed.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is the Event Loop? Explain its components.</li>
+            <li>What is the difference between the Call Stack and the Callback Queue?</li>
+            <li>What will be the output of `setTimeout(() => console.log('A'), 0); console.log('B');` and why?</li>
+            <li>What is the difference between microtasks (e.g., Promise callbacks) and macrotasks (e.g., `setTimeout`)?
+                Which one has higher priority?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Higher-Order Functions</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>A higher-order function is a function that either takes one or more functions as arguments, or returns a
+            function as its result, or both. JavaScript's array methods like `map`, `filter`, and `reduce` are common
+            examples.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code class="language-javascript">function multiplier(factor) {
+    return function(number) { // Returns a function
+        return number * factor;
+    };
+}
+const double = multiplier(2);
+console.log(double(5)); // 10</code></pre>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is a higher-order function?</li>
+            <li>Can you implement your own version of `Array.prototype.map`?</li>
+            <li>Explain what `Array.prototype.reduce` does. Provide a use case other than summing numbers.</li>
+            <li>What are the benefits of using higher-order functions?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Currying</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>Currying is a functional programming technique of transforming a function that takes multiple arguments into
+            a sequence of functions that each take a single argument.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code class="language-javascript">const add = (a, b) => a + b; // Non-curried
+const curriedAdd = (a) => (b) => a + b; // Curried
+const add5 = curriedAdd(5);
+console.log(add5(3)); // 8</code></pre>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is currying? What are its benefits?</li>
+            <li>What's the difference between currying and partial application?</li>
+            <li>How can you create a generic `curry` function that converts any multi-argument function?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Memoization</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>Memoization is an optimization technique used to speed up function calls by caching the results of expensive
+            function calls and returning the cached result when the same inputs occur again.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code class="language-javascript">function memoize(fn) {
+    const cache = {};
+    return function(...args) {
+        const key = JSON.stringify(args);
+        if (cache[key]) {
+            return cache[key];
+        } else {
+            const result = fn(...args);
+            cache[key] = result;
+            return result;
+        }
+    }
+}
+const slowFunction = (num) => { /* ... expensive calculation ... */ return num * 2; };
+const fastFunction = memoize(slowFunction);</code></pre>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is memoization and when is it useful?</li>
+            <li>Implement a `memoize` higher-order function.</li>
+            <li>What are the potential drawbacks of memoization (e.g., memory consumption)?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Generators and Iterators</h2>
+        <p><strong>Brief Details:</strong></p>
+        <p>The iterator protocol defines a standard way to produce a sequence of values. A Generator function
+            (`function*`) is a special function that simplifies writing iterators. It can pause its execution using the
+            `yield` keyword and resume later.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code class="language-javascript">function* idGenerator() {
+    let id = 1;
+    while (true) {
+        yield id++;
+    }
+}
+const gen = idGenerator();
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2</code></pre>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What is the difference between an iterator and a generator?</li>
+            <li>What does the `yield` keyword do?</li>
+            <li>Provide a practical use case for a generator function (e.g., handling large data sets).</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Interview Context (Companies)</h2>
+        <p>The topics covered in this file are fundamental to modern JavaScript development and are frequently brought
+            up in technical interviews for mid-level and senior software engineering roles.</p>
+        <ul>
+            <li>FAANG (Facebook/Meta, Amazon, Apple, Netflix, Google) and other top tech companies often test these
+                concepts to gauge a candidate's depth of understanding of JavaScript's core mechanics.</li>
+            <li>Questions about closures, `this`, and async programming are particularly common as they are crucial for
+                writing robust, scalable, and maintainable code.</li>
+            <li>A solid grasp of these advanced topics demonstrates that a candidate can move beyond basic
+                library/framework usage and understand how the language itself works, which is a key indicator of a
+                strong developer.</li>
+        </ul>
+    </div>
+
+    <h1>JavaScript Implementation Challenges</h1>
+
+    <div class="concept">
+        <h2>Debounce</h2>
+        <p><strong>Concept:</strong> Debouncing is a programming practice used to ensure that time-consuming tasks do
+            not fire so often, that it stalls the performance of the web page. In other words, it limits the rate at
+            which a function gets triggered.</p>
+        <p><strong>Implementation:</strong></p>
+        <pre><code class="language-javascript">function debounce(func, delay) {
+    let timeoutId;
+    return function(...args) {
+        // Clear the previous timeout
+        clearTimeout(timeoutId);
+        // Set a new timeout
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+
+// Example Usage:
+window.addEventListener('resize', debounce(() => {
+    console.log('Window resized!');
+}, 300));</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Implement Array.prototype Functions</h2>
+        <p><strong>Array.prototype.map()</strong></p>
+        <pre><code class="language-javascript">Array.prototype.myMap = function(callback) {
+    const newArray = [];
+    for (let i = 0; i < this.length; i++) {
+        if (this.hasOwnProperty(i)) { // Check for sparse arrays
+             newArray.push(callback(this[i], i, this));
+        }
+    }
+    return newArray;
+};</code></pre>
+        <p><strong>Array.prototype.filter()</strong></p>
+        <pre><code class="language-javascript">Array.prototype.myFilter = function(callback) {
+    const newArray = [];
+    for (let i = 0; i < this.length; i++) {
+        if (this.hasOwnProperty(i) && callback(this[i], i, this)) {
+            newArray.push(this[i]);
+        }
+    }
+    return newArray;
+};</code></pre>
+        <p><strong>Array.prototype.reduce()</strong></p>
+        <pre><code class="language-javascript">Array.prototype.myReduce = function(callback, initialValue) {
+    let accumulator = initialValue;
+    let startIndex = 0;
+    if (initialValue === undefined) {
+        // Find the first defined index in sparse arrays
+        for(let i = 0; i<this.length; i++){
+            if(this.hasOwnProperty(i)){
+                accumulator = this[i];
+                startIndex = i + 1;
+                break;
+            }
+        }
+    }
+
+    for (let i = startIndex; i < this.length; i++) {
+        if (this.hasOwnProperty(i)) {
+            accumulator = callback(accumulator, this[i], i, this);
+        }
+    }
+    return accumulator;
+};</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Implement Promise-based APIs</h2>
+        <p><strong>Promise.all()</strong></p>
+        <pre><code class="language-javascript">function promiseAll(promises) {
+    return new Promise((resolve, reject) => {
+        const results = [];
+        let completed = 0;
+        if (promises.length === 0) {
+            resolve(results);
+            return;
+        }
+        promises.forEach((promise, index) => {
+            Promise.resolve(promise).then(value => {
+                results[index] = value;
+                completed++;
+                if (completed === promises.length) {
+                    resolve(results);
+                }
+            }).catch(reject);
+        });
+    });
+}</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Implement Lodash Functions</h2>
+        <p><strong>_.cloneDeep()</strong></p>
+        <pre><code class="language-javascript">function cloneDeep(value) {
+    if (typeof value !== 'object' || value === null) {
+        return value;
+    }
+    
+    const newObject = Array.isArray(value) ? [] : {};
+    
+    for (const key in value) {
+        // Use Object.prototype.hasOwnProperty.call for safety
+        if (Object.prototype.hasOwnProperty.call(value, key)) {
+            newObject[key] = cloneDeep(value[key]);
+        }
+    }
+    
+    return newObject;
+}</code></pre>
+        <p><strong>_.groupBy()</strong></p>
+        <pre><code class="language-javascript">function groupBy(collection, iteratee) {
+    return collection.reduce((acc, item) => {
+        const key = typeof iteratee === 'function' ? iteratee(item) : item[iteratee];
+        if (!acc[key]) {
+            acc[key] = [];
+        }
+        acc[key].push(item);
+        return acc;
+    }, {});
+}</code></pre>
+    </div>
+
+    <h1>Core JavaScript Concepts</h1>
+
+    <div class="concept">
+        <h2>Hoisting</h2>
+        <p>Hoisting is JavaScript's default behavior of moving declarations to the top of the current scope (script or
+            function). `var` variables are hoisted and initialized with `undefined`. `let` and `const` variables are
+            hoisted but not initialized, which puts them in a "temporal dead zone" until the declaration is encountered.
+        </p>
+        <pre><code class="language-javascript">console.log(myVar); // undefined
+var myVar = 5;
+
+// vs
+
+// console.log(myLet); // ReferenceError: Cannot access 'myLet' before initialization
+let myLet = 10;</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Event Bubbling and Capturing</h2>
+        <p>Event propagation in the DOM has two main phases:
+        <ol>
+            <li><strong>Capturing Phase:</strong> The event travels from the root of the document down to the target
+                element.</li>
+            <li><strong>Bubbling Phase:</strong> The event travels or "bubbles" up from the target element back to the
+                root.</li>
+        </ol>
+        By default, event handlers are executed in the bubbling phase. You can listen in the capturing phase by passing
+        `{ capture: true }` to `addEventListener`.
+        </p>
+    </div>
+
+    <div class="concept">
+        <h2>Event Delegation</h2>
+        <p>Event delegation is a technique where you add a single event listener to a parent element to manage events
+            for all of its children. When an event bubbles up from a child to the parent, the parent's listener can
+            check the `event.target` property to determine which child element originated the event. This is more
+            efficient than adding an event listener to every child, especially for dynamic lists.</p>
+        <pre><code class="language-javascript">// Instead of adding a listener to every <li>...
+document.getElementById('myList').addEventListener('click', function(e) {
+    if (e.target && e.target.matches('li.item')) {
+        console.log('List item clicked:', e.target.textContent);
+    }
+});</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>"use strict"</h2>
+        <p><code>"use strict";</code> is a directive that enables "strict mode" in JavaScript. Strict mode makes several
+            changes to normal JavaScript semantics:</p>
+        <ul>
+            <li>Eliminates some JavaScript silent errors by changing them to throw errors.</li>
+            <li>Fixes mistakes that make it difficult for JavaScript engines to perform optimizations.</li>
+            <li>Prohibits some syntax likely to be defined in future versions of ECMAScript.</li>
+            <li>Forbids assigning values to undeclared variables.</li>
+        </ul>
+        <p>It's generally recommended for writing robust and secure JavaScript.</p>
+    </div>
+
+    <div class="concept">
+        <h2>Mutable vs. Immutable Objects</h2>
+        <p>
+            <strong>Mutable</strong> objects are those whose state can be modified after they are created. In
+            JavaScript, objects and arrays are mutable.
+            <br>
+            <strong>Immutable</strong> objects are those whose state cannot be changed after creation. In JavaScript,
+            primitive types (string, number, boolean, null, undefined, symbol, bigint) are immutable.
+        </p>
+        <pre><code class="language-javascript">let arr = [1, 2];
+arr.push(3); // Mutates the original array: arr is now [1, 2, 3]
+
+let str = "hello";
+str.toUpperCase(); // Does not mutate 'str'. It returns a new string "HELLO".
+console.log(str); // "hello"</code></pre>
+    </div>
+
+    <h1>Quick Questions & Comparisons</h1>
+
+    <div class="concept">
+        <h2>AMD vs. CommonJS</h2>
+        <p>Both are module systems for JavaScript, but they have different approaches:</p>
+        <ul>
+            <li><strong>CommonJS (CJS):</strong> Synchronous. Modules are loaded at runtime, one by one. It was designed
+                for server-side JavaScript (like Node.js). `require()` and `module.exports`.</li>
+            <li><strong>Asynchronous Module Definition (AMD):</strong> Asynchronous. Modules are loaded in parallel,
+                which is better for browsers as it doesn't block rendering. `define()` function.</li>
+        </ul>
+        <p>Modern JavaScript has adopted ES Modules (`import`/`export`), which is now the standard and offers the best
+            of both worlds.</p>
+    </div>
+
+    <div class="concept">
+        <h2>IIFE (Immediately Invoked Function Expression) Problem</h2>
+        <p>The code <code>function foo(){ }();</code> doesn't work because it's parsed as a function declaration, not an
+            expression. The `()` afterwards is seen as a syntax error.</p>
+        <p>To fix it, you need to trick the parser into treating it as an expression. The most common way is to wrap it
+            in parentheses:</p>
+        <pre><code class="language-javascript">(function foo(){
+    console.log('IIFE works!');
+})();</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2><code>null</code> vs. <code>undefined</code> vs. <code>undeclared</code></h2>
+        <ul>
+            <li><strong><code>undeclared</code>:</strong> A variable that has not been declared at all. Trying to access
+                it results in a `ReferenceError`.</li>
+            <li><strong><code>undefined</code>:</strong> A variable that has been declared but has not been assigned a
+                value. It is a primitive type.</li>
+            <li><strong><code>null</code>:</strong> A variable that is explicitly assigned the value `null`. It
+                represents the intentional absence of any object value. It is also a primitive type.</li>
+        </ul>
+        <p><strong>Checking for them:</strong></p>
+        <pre><code class="language-javascript">if (typeof myVar === 'undefined') { /* checks for undefined or undeclared */ }
+
+if (myVar === null) { /* checks specifically for null */ }
+
+// Using == null checks for both null and undefined
+if (myVar == null) { /* true if myVar is null or undefined */ }
+</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2><code>.forEach()</code> vs. <code>.map()</code></h2>
+        <ul>
+            <li><strong><code>.forEach()</code>:</strong> Executes a provided function once for each array element. It
+                does <strong>not</strong> return a new array (it returns `undefined`). Use it when you want to perform a
+                side effect for each element (e.g., logging to console, saving to a database).</li>
+            <li><strong><code>.map()</code>:</strong> Creates a <strong>new array</strong> populated with the results of
+                calling a provided function on every element in the calling array. Use it when you want to transform an
+                array into a new array.</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2><code>==</code> vs. <code>===</code></h2>
+        <ul>
+            <li><strong><code>==</code> (Loose Equality):</strong> Compares two values for equality after performing
+                type conversion if necessary.</li>
+            <li><strong><code>===</code> (Strict Equality):</strong> Compares two values for equality without performing
+                type conversion. They must be of the same type and have the same value.</li>
+        </ul>
+        <p>It's almost always better to use `===` to avoid unexpected behavior from type coercion.</p>
+        <pre><code class="language-javascript">5 == '5';  // true
+5 === '5'; // false</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2><code>.call()</code> vs. <code>.apply()</code> vs. <code>.bind()</code></h2>
+        <p>All three methods are used to set the `this` value when calling a function.</p>
+        <ul>
+            <li><strong><code>.call(thisArg, arg1, arg2, ...)</code>:</strong> Invokes the function immediately, passing
+                arguments individually.</li>
+            <li><strong><code>.apply(thisArg, [arg1, arg2, ...])</code>:</strong> Invokes the function immediately,
+                passing arguments as an array.</li>
+            <li><strong><code>.bind(thisArg)</code>:</strong> Returns a <strong>new function</strong> with `this` bound
+                to `thisArg`. The new function can be called later.</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>ES6 Class vs. ES5 Function Constructors</h2>
+        <p>ES6 `class` is primarily syntactic sugar over ES5's prototypal inheritance model.</p>
+        <ul>
+            <li><strong>Clarity:</strong> `class` syntax is clearer and more familiar to developers from class-based
+                languages.</li>
+            <li><strong>Hoisting:</strong> Function constructors are hoisted, while class declarations are not.</li>
+            <li><strong>Strict Mode:</strong> Code inside a class body is always in strict mode.</li>
+        </ul>
+    </div>
+
+    <h1>ES6+ Features</h1>
+
+    <div class="concept">
+        <h2><code>let</code>, <code>var</code>, and <code>const</code></h2>
+        <ul>
+            <li><strong><code>var</code>:</strong> Function-scoped. Variables declared with `var` are hoisted to the top
+                of their function scope and initialized with `undefined`. Can be re-declared and updated.</li>
+            <li><strong><code>let</code>:</strong> Block-scoped (`{}`). Variables are hoisted but not initialized
+                (temporal dead zone). Can be updated but not re-declared within the same scope.</li>
+            <li><strong><code>const</code>:</strong> Block-scoped. Also has a temporal dead zone. Cannot be updated or
+                re-declared. For objects and arrays, the reference is constant, but the contents can be modified.</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Arrow Functions (<code>=&gt;</code>)</h2>
+        <p>Arrow functions provide a more concise syntax for writing function expressions. The main difference from
+            regular functions is how they handle `this`.</p>
+        <ul>
+            <li><strong>Lexical `this`:</strong> Arrow functions do not have their own `this` binding. They inherit
+                `this` from the parent scope at the time they are defined.</li>
+            <li><strong>Use Case in Constructors:</strong> This makes them useful for methods in constructors that need
+                to access the instance's `this` inside callbacks, without needing `.bind(this)`.</li>
+        </ul>
+        <pre><code class="language-javascript">function Timer() {
+    this.seconds = 0;
+    setInterval(() => {
+        this.seconds++; // 'this' correctly refers to the Timer instance
+    }, 1000);
+}
+const timer = new Timer();</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Destructuring Assignment</h2>
+        <p>Destructuring is a syntax that makes it possible to unpack values from arrays, or properties from objects,
+            into distinct variables.</p>
+        <p><strong>Object Destructuring:</strong></p>
+        <pre><code class="language-javascript">const user = { firstName: 'John', lastName: 'Doe' };
+const { firstName, lastName } = user;
+console.log(firstName); // John</code></pre>
+        <p><strong>Array Destructuring:</strong></p>
+        <pre><code class="language-javascript">const [a, b] = [10, 20];
+console.log(a); // 10</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Template Literals</h2>
+        <p>Template literals are string literals allowing embedded expressions. You can use multi-line strings and
+            string interpolation features with them.</p>
+        <pre><code class="language-javascript">const name = "World";
+const greeting = `Hello, ${name}!
+This is a multi-line string.`;
+console.log(greeting);</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Spread vs. Rest Syntax (<code>...</code>)</h2>
+        <p>The `...` syntax is used for both spread and rest, but in different contexts.</p>
+        <ul>
+            <li><strong>Spread Syntax:</strong> "expands" an iterable (like an array or string) into individual
+                elements. It's often used for making shallow copies of arrays/objects or merging them.</li>
+            <li><strong>Rest Syntax:</strong> "collects" multiple elements and "condenses" them into a single array.
+                It's used in function parameters to gather all remaining arguments into an array.</li>
+        </ul>
+        <pre><code class="language-javascript">// Spread
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+// Rest
+function sum(...numbers) {
+    return numbers.reduce((acc, current) => acc + current, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10</code></pre>
+    </div>
+
+    <div class="concept">
+        <h2>Static Class Members</h2>
+        <p>Static methods and properties are defined on the class itself, not on the instances of the class. You would
+            create static members when the method or property is related to the class as a whole, but not to any
+            specific instance. They are often used for creating utility functions or constants related to the class.</p>
+        <pre><code class="language-javascript">class MyClass {
+    static staticProperty = 'Some Value';
+    static staticMethod() {
+        return 'Hello from static method!';
+    }
+}
+
+console.log(MyClass.staticProperty);      // 'Some Value'
+console.log(MyClass.staticMethod());    // 'Hello from static method!'
+// const instance = new MyClass();
+// console.log(instance.staticMethod()); // TypeError</code></pre>
+    </div>
+
+    <h1>DOM, Async, and Development</h1>
+
+    <div class="concept">
+        <h2>Same-Origin Policy</h2>
+        <p>The same-origin policy is a critical security mechanism that restricts how a document or script loaded from
+            one "origin" can interact with a resource from another "origin". An origin is defined by the combination of
+            protocol (e.g., `http`), host (e.g., `example.com`), and port (e.g., `80`). This policy prevents malicious
+            scripts on one page from obtaining sensitive data from another web page through DOM manipulation.</p>
+    </div>
+
+    <div class="concept">
+        <h2>Ajax (Asynchronous JavaScript and XML)</h2>
+        <p>Ajax is a set of web development techniques that allows a web page to update asynchronously by exchanging
+            small amounts of data with the server behind the scenes. This means you can update parts of a web page
+            without reloading the whole page.</p>
+        <ul>
+            <li><strong>How it works:</strong> An `XMLHttpRequest` (or more modern `fetch` API) object is used to send a
+                request to a server URL. The server processes the request and sends back a response (typically as JSON,
+                not XML anymore), which is then used by the client-side JavaScript to update the DOM.</li>
+            <li><strong>Advantages:</strong> Improved user experience (no full page reloads), reduced bandwidth usage.
+            </li>
+            <li><strong>Disadvantages:</strong> Can be complex to manage state, can break browser's back button if not
+                handled carefully (e.g., with the History API).</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>JSONP (JSON with Padding)</h2>
+        <p>JSONP is a technique used to overcome the same-origin policy's restrictions on making requests to different
+            domains. It is not "real" Ajax because it doesn't use `XMLHttpRequest`.</p>
+        <p>It works by dynamically creating a
+        <p> tag on the page, whose `src` points to the cross-domain URL. The server then wraps the JSON response in a
+            function call (the "padding"). Since browsers do not block script tags from cross-origin sources, the data
+            can be received and processed. This is now largely superseded by CORS (Cross-Origin Resource Sharing)</p>.
+        </p>
+    </div>
+
+    <div class="concept">
+        <h2>Promises vs. Callbacks</h2>
+        <p>Promises provide a more robust and flexible way to handle asynchronous operations compared to traditional
+            callbacks.</p>
+        <ul>
+            <li><strong>Pros of Promises:</strong>
+                <ul>
+                    <li>Avoids "Callback Hell" and results in more readable, linear code (especially with
+                        `async/await`).</li>
+                    <li>Provides standardized, chainable `.then()` and `.catch()` methods for handling success and
+                        failure.</li>
+                    <li>Easier to compose multiple asynchronous operations (e.g., `Promise.all`).</li>
+                </ul>
+            </li>
+            <li><strong>Cons of Promises:</strong> Can be slightly more complex to learn initially.</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Code Organization & Debugging</h2>
+        <ul>
+            <li><strong>Organization:</strong> Modern JavaScript projects are typically organized using ES Modules
+                (`import`/`export`) to create reusable, self-contained files. Design patterns like the Module Pattern
+                (using closures) or class-based structures are also used.</li>
+            <li><strong>Debugging:</strong> Key tools include:
+                <ul>
+                    <li>Browser DevTools (debugger, console, network tab).</li>
+                    <li>Using the `debugger;` statement in code to create breakpoints.</li>
+                    <li>`console.log()`, `console.warn()`, `console.error()`, `console.table()` for inspecting
+                        variables.</li>
+                    <li>Linters (like ESLint) to catch errors before runtime.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

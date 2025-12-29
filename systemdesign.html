@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design Concepts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .concept {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        strong {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>System Design Key Concepts</h1>
+
+    <div class="concept">
+        <h2>Scalability</h2>
+        <p><strong>Concept:</strong> The ability of a system to handle a growing amount of work by adding resources.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li><strong>Vertical Scaling (Scaling Up):</strong> Increasing the resources of a single server (e.g., more CPU, RAM).</li>
+            <li><strong>Horizontal Scaling (Scaling Out):</strong> Adding more servers to the system to distribute the load.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>How would you scale this system to handle 10x the traffic?</li>
+            <li>What are the trade-offs between vertical and horizontal scaling for this application?</li>
+            <li>How can we design the system to be stateless to make horizontal scaling easier?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Availability</h2>
+        <p><strong>Concept:</strong> The measure of a system's uptime and accessibility to users.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Expressed as a percentage (e.g., 99.999% "five nines").</li>
+            <li>Achieved through redundancy, failover mechanisms, and eliminating single points of failure.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What are the single points of failure in this design?</li>
+            <li>How can we ensure high availability for the database?</li>
+            <li>What happens if a server or a data center goes down?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Reliability</h2>
+        <p><strong>Concept:</strong> The probability that a system will produce correct outputs and not fail.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Closely related to availability but focuses on data correctness and fault tolerance.</li>
+            <li>Involves techniques like data replication and checksums.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>How do we prevent data corruption?</li>
+            <li>How can the system recover from a partial failure?</li>
+            <li>What guarantees does the system provide regarding data integrity?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Performance</h2>
+        <p><strong>Concept:</strong> The speed and responsiveness of a system.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Measured by latency (delay) and throughput (operations per second).</li>
+            <li>Improved by optimizing code, using caching, and efficient database queries.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What are the key performance metrics for this system?</li>
+            <li>How can we reduce the latency for end-users?</li>
+            <li>Where are the potential bottlenecks in this design?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Consistency</h2>
+        <p><strong>Concept:</strong> Ensuring that all nodes in a distributed system see the same data at the same time.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li><strong>Strong Consistency:</strong> All reads get the most recent write.</li>
+            <li><strong>Eventual Consistency:</strong> Over time, all nodes will become consistent.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What level of consistency is required for this application?</li>
+            <li>What are the trade-offs of choosing strong vs. eventual consistency?</li>
+            <li>How does the choice of database affect consistency?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Load Balancing</h2>
+        <p><strong>Concept:</strong> Distributing incoming network traffic across multiple servers.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Algorithms: Round Robin, Least Connections, IP Hash.</li>
+            <li>Prevents any single server from becoming a bottleneck.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What load balancing strategy would you use and why?</li>
+            <li>How does the load balancer handle server failures?</li>
+            <li>Where would you place the load balancer in the architecture?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Caching</h2>
+        <p><strong>Concept:</strong> Storing frequently accessed data in a temporary, fast-access layer.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Reduces latency and load on the backend systems (like databases).</li>
+            <li>Cache-aside, Read-through, Write-through are common caching patterns.</li>
+            <li>Cache invalidation is a critical challenge.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What data should be cached?</li>
+            <li>What is the cache eviction policy?</li>
+            <li>How do you handle cache invalidation to ensure data consistency?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Database Scaling</h2>
+        <p><strong>Concept:</strong> Techniques to handle a growing amount of data and database traffic.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li><strong>Replication:</strong> Creating copies of the database (Master-Slave, Master-Master). Good for read scaling.</li>
+            <li><strong>Sharding (Partitioning):</strong> Splitting data across multiple databases. Good for write scaling.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>How would you scale the database for a read-heavy workload?</li>
+            <li>When would you consider sharding the database? What is the sharding key?</li>
+            <li>What are the challenges of database replication and sharding?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>CAP Theorem</h2>
+        <p><strong>Concept:</strong> A distributed system can only provide two of the following three guarantees: Consistency, Availability, and Partition Tolerance.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>In modern distributed systems, partition tolerance is a must.</li>
+            <li>The trade-off is typically between Consistency and Availability (CP vs. AP systems).</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>Does this system need to be more consistent or more available?</li>
+            <li>How does the CAP theorem influence your choice of database or data store?</li>
+            <li>Can you give an example of a CP system and an AP system?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Microservices vs. Monolithic Architecture</h2>
+        <p><strong>Concept:</strong> Two different architectural styles for building applications.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li><strong>Monolith:</strong> The entire application is built as a single, unified unit.</li>
+            <li><strong>Microservices:</strong> The application is broken down into a collection of smaller, independent services.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What are the pros and cons of using microservices for this project?</li>
+            <li>How do services communicate with each other in a microservices architecture?</li>
+            <li>How do you handle deployment and monitoring in a microservices environment?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Message Queues</h2>
+        <p><strong>Concept:</strong> A form of asynchronous communication between services.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>A producer sends a message to a queue, and a consumer retrieves it.</li>
+            <li>Decouples services and helps with load leveling and background processing.</li>
+            <li>Examples: RabbitMQ, Kafka, AWS SQS.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>Where can we use a message queue in this system to improve performance or reliability?</li>
+            <li>What happens if a message fails to be processed?</li>
+            <li>What are the trade-offs between different message queue technologies?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Content Delivery Network (CDN)</h2>
+        <p><strong>Concept:</strong> A geographically distributed network of servers that cache content closer to end-users.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Reduces latency for serving static assets like images, videos, CSS, and JavaScript.</li>
+            <li>Reduces the load on your origin servers.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What kind of content would you serve from a CDN?</li>
+            <li>How does a CDN improve user-perceived performance?</li>
+            <li>What is the strategy for updating content in the CDN?</li>
+        </ul>
+    </div>
+
+    <h1>Advanced System Design Topics</h1>
+
+    <div class="concept">
+        <h2>SQL vs. NoSQL</h2>
+        <p><strong>Concept:</strong> Two major categories of databases.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li><strong>SQL (Relational):</strong> Structured data, schema-on-write, guarantees ACID properties. Examples: MySQL, PostgreSQL.</li>
+            <li><strong>NoSQL (Non-relational):</strong> Unstructured or semi-structured data, schema-on-read. Categories include Key-Value, Document, Column-family, and Graph. Examples: MongoDB, Cassandra, Redis.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What are the data and query patterns for this application?</li>
+            <li>Does the system require strong transactional guarantees?</li>
+            <li>How will the database scale as data volume and traffic grow?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Consistent Hashing</h2>
+        <p><strong>Concept:</strong> A hashing technique that minimizes the number of keys that need to be remapped when a cache server is added or removed.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Maps servers and keys to a logical ring. A key is stored on the server that appears first in clockwise order.</li>
+            <li>Crucial for distributed caching and database sharding to reduce churn.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>How can we minimize data redistribution when scaling our cache cluster?</li>
+            <li>What are the potential issues with a naive hashing approach for data distribution?</li>
+            <li>How does consistent hashing help in building a scalable distributed system?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Rate Limiting</h2>
+        <p><strong>Concept:</strong> Controlling the rate of traffic sent or received by a network interface controller.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Protects services from being overwhelmed by too many requests, preventing DoS attacks and abuse.</li>
+            <li>Algorithms: Token Bucket, Leaky Bucket, Fixed Window, Sliding Window Log.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>How would you design a rate limiter to protect our API from abuse?</li>
+            <li>Should the rate limiter be implemented on the client-side, server-side, or at the API gateway?</li>
+            <li>How do you handle rate limiting in a distributed environment?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>API Design: REST vs. GraphQL vs. gRPC</h2>
+        <p><strong>Concept:</strong> Different paradigms for building APIs.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li><strong>REST:</strong> Resource-based, uses standard HTTP methods, stateless.</li>
+            <li><strong>GraphQL:</strong> A query language for APIs, allows clients to request exactly the data they need.</li>
+            <li><strong>gRPC:</strong> High-performance RPC framework, uses Protocol Buffers for serialization, works over HTTP/2.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>What are the pros and cons of each paradigm for our use case?</li>
+            <li>Is the API for internal service-to-service communication or for a public-facing client?</li>
+            <li>How can we handle API versioning?</li>
+        </ul>
+    </div>
+
+    <h1>Common Architectural Patterns</h1>
+
+    <div class="concept">
+        <h2>Publish-Subscribe (Pub-Sub)</h2>
+        <p><strong>Concept:</strong> A messaging pattern where publishers send messages to topics, and subscribers receive messages from the topics they are interested in, without direct knowledge of each other.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Decouples publishers and subscribers, improving scalability and flexibility.</li>
+            <li>Facilitates asynchronous communication.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>How can we use the pub-sub pattern to notify multiple services of an event?</li>
+            <li>What are the challenges in ensuring message delivery and order?</li>
+            <li>What's the difference between a message queue and a pub-sub system?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>CQRS (Command Query Responsibility Segregation)</h2>
+        <p><strong>Concept:</strong> A pattern that separates read and write operations for a data store.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Commands are tasks that change the state of the system.</li>
+            <li>Queries are tasks that read the state of the system but do not change it.</li>
+            <li>Allows for scaling the read and write models independently.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>When is it beneficial to use CQRS?</li>
+            <li>How do you keep the read and write models synchronized?</li>
+            <li>What are the consistency challenges with this pattern?</li>
+        </ul>
+    </div>
+
+    <div class="concept">
+        <h2>Circuit Breaker</h2>
+        <p><strong>Concept:</strong> A pattern to prevent a network or service failure from cascading to other services.</p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Acts as a proxy for operations that might fail. It monitors for failures and, after a certain threshold, "trips" or opens the circuit, causing subsequent calls to fail immediately without trying to execute the real operation.</li>
+            <li>After a timeout, it allows a limited number of test requests to pass through (half-open state) to check if the downstream service is healthy again.</li>
+        </ul>
+        <p><strong>Important Questions:</strong></p>
+        <ul>
+            <li>How can we make our system more resilient to failures in downstream services?</li>
+            <li>How does the circuit breaker pattern help prevent cascading failures?</li>
+            <li>What are the different states of a circuit breaker?</li>
+        </ul>
+    </div>
+
+</body>
+</html>
