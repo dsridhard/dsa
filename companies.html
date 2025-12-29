@@ -1,225 +1,514 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DSA Topics by Company</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #0056b3;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #0056b3;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            background: #f9f9f9;
-            margin-bottom: 8px;
-            padding: 10px 15px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
-        li input[type="checkbox"] {
-            margin-right: 15px;
-            min-width: 20px;
-            min-height: 20px;
-            cursor: pointer;
-        }
-        .done {
-            text-decoration: line-through;
-            color: #888;
-        }
-        .tech-info {
-            display: none;
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 5px;
-            padding-left: 10px;
-            border-left: 3px solid #eee;
-        }
-        .tech-info.active {
-            display: block;
-        }
-        .question-text {
-            font-weight: 500;
-            cursor: pointer;
-            position: relative;
-            padding-right: 20px;
-            display: inline-block;
-        }
-        .question-text::after {
-            content: "▼";
-            font-size: 0.7em;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.3s;
-            color: #aaa;
-        }
-        .question-text.active::after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-        .nav-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #0056b3;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .nav-btn:hover {
-            background-color: #004494;
-        }
-        .controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #0056b3;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #0056b3;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background: #f9f9f9;
+        margin-bottom: 8px;
+        padding: 10px 15px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      li input[type="checkbox"] {
+        margin-right: 15px;
+        min-width: 20px;
+        min-height: 20px;
+        cursor: pointer;
+      }
+      .done {
+        text-decoration: line-through;
+        color: #888;
+      }
+      .tech-info {
+        display: none;
+        font-size: 0.85em;
+        color: #666;
+        margin-top: 5px;
+        padding-left: 10px;
+        border-left: 3px solid #eee;
+      }
+      .tech-info.active {
+        display: block;
+      }
+      .question-text {
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        padding-right: 20px;
+        display: inline-block;
+      }
+      .question-text::after {
+        content: "▼";
+        font-size: 0.7em;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s;
+        color: #aaa;
+      }
+      .question-text.active::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+      .nav-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0056b3;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .nav-btn:hover {
+        background-color: #004494;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="controls">
-            <a href="./index.html" class="nav-btn">Back to Questions</a>
-        </div>
-        <h1>DSA Topics by Company</h1>
+      <div class="controls">
+        <a href="./index.html" class="nav-btn">Back to Questions</a>
+      </div>
+      <h1>DSA Topics by Company</h1>
 
-        <h2>FAANG / MAANG Companies (Meta, Amazon, Apple, Netflix, Google)</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Arrays and Strings</span><span class="tech-info">Sliding Window, Two Pointers</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Binary Search and its Variants</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Linked Lists</span><span class="tech-info">Reversal, Cycle Detection</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Stacks & Queues</span><span class="tech-info">Monotonic Stack, Expression Evaluation</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Trees and Binary Search Trees</span><span class="tech-info">Traversals, LCA, Diameter</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Recursion and Backtracking</span><span class="tech-info">N-Queens, Sudoku Solver</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Dynamic Programming</span><span class="tech-info">Knapsack, LIS, LCS, Grid Problems</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Graphs</span><span class="tech-info">BFS, DFS, Dijkstra, Union Find, Topological Sort</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Heaps and Priority Queues</span><span class="tech-info">Median in Stream, Kth Largest</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Tries</span><span class="tech-info">Autocomplete, Word Dictionary</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Bit Manipulation</span><span class="tech-info">XOR, Subsets, Bitmasking</span></div></li>
-        </ul>
+      <h2>FAANG / MAANG Companies (Meta, Amazon, Apple, Netflix, Google)</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Arrays and Strings</span
+            ><span class="tech-info">Sliding Window, Two Pointers</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Binary Search and its Variants</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Linked Lists</span
+            ><span class="tech-info">Reversal, Cycle Detection</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Stacks & Queues</span
+            ><span class="tech-info"
+              >Monotonic Stack, Expression Evaluation</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Trees and Binary Search Trees</span
+            ><span class="tech-info">Traversals, LCA, Diameter</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Recursion and Backtracking</span
+            ><span class="tech-info">N-Queens, Sudoku Solver</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Dynamic Programming</span
+            ><span class="tech-info">Knapsack, LIS, LCS, Grid Problems</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Graphs</span
+            ><span class="tech-info"
+              >BFS, DFS, Dijkstra, Union Find, Topological Sort</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Heaps and Priority Queues</span
+            ><span class="tech-info">Median in Stream, Kth Largest</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Tries</span
+            ><span class="tech-info">Autocomplete, Word Dictionary</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Bit Manipulation</span
+            ><span class="tech-info">XOR, Subsets, Bitmasking</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Microsoft / Adobe / Oracle / Cisco</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Arrays and 2D Arrays</span><span class="tech-info">Prefix Sum, Kadane’s</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Strings</span><span class="tech-info">Pattern Matching, Anagrams, Z-Algorithm</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Dynamic Programming</span><span class="tech-info">LIS, LCS, Edit Distance</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Trees and BSTs</span><span class="tech-info">Balanced Trees, LCA</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">HashMaps</span><span class="tech-info">Subarray Sums, Frequency Counting</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Graphs</span><span class="tech-info">DFS, BFS, Cycle Detection, MSTs</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Greedy</span><span class="tech-info">Activity Selection, Job Scheduling</span></div></li>
-        </ul>
+      <h2>Microsoft / Adobe / Oracle / Cisco</h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Arrays and 2D Arrays</span
+            ><span class="tech-info">Prefix Sum, Kadane’s</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Strings</span
+            ><span class="tech-info"
+              >Pattern Matching, Anagrams, Z-Algorithm</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Dynamic Programming</span
+            ><span class="tech-info">LIS, LCS, Edit Distance</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Trees and BSTs</span
+            ><span class="tech-info">Balanced Trees, LCA</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">HashMaps</span
+            ><span class="tech-info">Subarray Sums, Frequency Counting</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Graphs</span
+            ><span class="tech-info">DFS, BFS, Cycle Detection, MSTs</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Greedy</span
+            ><span class="tech-info">Activity Selection, Job Scheduling</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Service-Based Companies (TCS, Infosys, Wipro, Capgemini, Cognizant)</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Basic Arrays and Strings</span><span class="tech-info">Reversal, Rotations, Palindrome</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Searching and Sorting</span><span class="tech-info">Bubble, Merge, Binary Search</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Simple Linked List Problems</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Basic Recursion Problems</span><span class="tech-info">Factorial, Fibonacci</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Stacks and Queues</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Simple Tree Traversals</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Greedy and Bitwise Basics</span></div></li>
-        </ul>
+      <h2>
+        Service-Based Companies (TCS, Infosys, Wipro, Capgemini, Cognizant)
+      </h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Basic Arrays and Strings</span
+            ><span class="tech-info">Reversal, Rotations, Palindrome</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Searching and Sorting</span
+            ><span class="tech-info">Bubble, Merge, Binary Search</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Simple Linked List Problems</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Basic Recursion Problems</span
+            ><span class="tech-info">Factorial, Fibonacci</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div><span class="question-text">Stacks and Queues</span></div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div><span class="question-text">Simple Tree Traversals</span></div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Greedy and Bitwise Basics</span>
+          </div>
+        </li>
+      </ul>
 
-        <h2>Startups / Product-Based Companies (Zomato, Swiggy, CRED, Razorpay)</h2>
-        <ul>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Advanced Arrays and Sliding Window</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Graphs</span><span class="tech-info">BFS, DFS, Dijkstra for map-based services</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Dynamic Programming</span><span class="tech-info">Stock Buy Sell, Partition Problems</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Concurrency and LRU Cache Implementation</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Design Questions</span><span class="tech-info">Rate Limiter, Logger Rate Limiter</span></div></li>
-            <li><input type="checkbox" onchange="toggleDone(this)"><div><span class="question-text">Heap, Tries, and System Design Basics</span></div></li>
-        </ul>
+      <h2>
+        Startups / Product-Based Companies (Zomato, Swiggy, CRED, Razorpay)
+      </h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Advanced Arrays and Sliding Window</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Graphs</span
+            ><span class="tech-info"
+              >BFS, DFS, Dijkstra for map-based services</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Dynamic Programming</span
+            ><span class="tech-info">Stock Buy Sell, Partition Problems</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Concurrency and LRU Cache Implementation</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Design Questions</span
+            ><span class="tech-info">Rate Limiter, Logger Rate Limiter</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Heap, Tries, and System Design Basics</span
+            >
+          </div>
+        </li>
+      </ul>
+
+      <h2>
+        Fintech & Trading Firms (Goldman Sachs, Morgan Stanley, Bloomberg, Jane
+        Street)
+      </h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Advanced Algorithms</span
+            ><span class="tech-info">Hard DP, Graphs, Network Flow</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Complex Data Structures</span
+            ><span class="tech-info">Heaps, Tries, Segment Trees</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Low-Latency System Design</span
+            ><span class="tech-info">High-Frequency Trading Systems</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Quantitative & Probability Problems</span
+            >
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div><span class="question-text">Bit Manipulation</span></div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text"
+              >Mathematical Puzzles and Brain Teasers</span
+            >
+          </div>
+        </li>
+      </ul>
+
+      <h2>
+        Cloud & Enterprise Software (Salesforce, SAP, Workday, ServiceNow)
+      </h2>
+      <ul>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Scalable System Design</span
+            ><span class="tech-info">Multi-tenancy, Data Partitioning</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Database Concepts</span
+            ><span class="tech-info">SQL, NoSQL, Indexing</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Object-Oriented Design Principles</span
+            ><span class="tech-info">SOLID, Design Patterns</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Core DSA on Large Datasets</span
+            ><span class="tech-info">Trees, Graphs, DP</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">API Design</span
+            ><span class="tech-info">RESTful services, GraphQL</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" onchange="toggleDone(this)" />
+          <div>
+            <span class="question-text">Security Concepts</span
+            ><span class="tech-info">Authentication, Authorization</span>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <script>
-        let progressData = {};
 
-        // Function to handle checkbox state changes and save to sessionStorage
-        function toggleDone(checkbox) {
-            const listItem = checkbox.parentNode;
-            // Get the text content of the list item to use as a unique key
-            const questionSpan = listItem.querySelector('.question-text');
-            const questionText = questionSpan ? questionSpan.textContent.trim() : listItem.textContent.trim();
-            if (checkbox.checked) {
-                listItem.classList.add('done');
-                progressData[questionText] = true;
-            } else {
-                listItem.classList.remove('done');
-                delete progressData[questionText];
-            }
-            sessionStorage.setItem('dsaCompaniesProgress', JSON.stringify(progressData));
-        }
+          let progressData = {};
 
-        function applyProgress() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                const listItem = checkbox.parentNode;
-                const questionSpan = listItem.querySelector('.question-text');
-                const questionText = questionSpan ? questionSpan.textContent.trim() : listItem.textContent.trim();
+          // Function to handle checkbox state changes and save to sessionStorage
+          function toggleDone(checkbox) {
+              const listItem = checkbox.parentNode;
+              // Get the text content of the list item to use as a unique key
+              const questionSpan = listItem.querySelector('.question-text');
+              const questionText = questionSpan ? questionSpan.textContent.trim() : listItem.textContent.trim();
+              if (checkbox.checked) {
+                  listItem.classList.add('done');
+                  progressData[questionText] = true;
+              } else {
+                  listItem.classList.remove('done');
+                  delete progressData[questionText];
+              }
+              sessionStorage.setItem('dsaCompaniesProgress', JSON.stringify(progressData));
+          }
 
-                if (progressData[questionText]) {
-                    checkbox.checked = true;
-                    listItem.classList.add('done');
-                }
-            });
-        }
+          function applyProgress() {
+              const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+              checkboxes.forEach(checkbox => {
+                  const listItem = checkbox.parentNode;
+                  const questionSpan = listItem.querySelector('.question-text');
+                  const questionText = questionSpan ? questionSpan.textContent.trim() : listItem.textContent.trim();
 
-        function loadProgressFromSession() {
-            const stored = sessionStorage.getItem('dsaCompaniesProgress');
-            if (stored) {
-                progressData = JSON.parse(stored);
-                applyProgress();
-            }
-        }
+                  if (progressData[questionText]) {
+                      checkbox.checked = true;
+                      listItem.classList.add('done');
+                  }
+              });
+          }
 
-        function initAccordion() {
-            const questions = document.querySelectorAll('.question-text');
-            questions.forEach(q => {
-                q.addEventListener('click', () => {
-                    q.classList.toggle('active');
-                    const info = q.parentNode.querySelector('.tech-info');
-                    if (info) info.classList.toggle('active');
-                });
-            });
-        }
+          function loadProgressFromSession() {
+              const stored = sessionStorage.getItem('dsaCompaniesProgress');
+              if (stored) {
+                  progressData = JSON.parse(stored);
+                  applyProgress();
+              }
+          }
 
-        // Call loadCheckboxStates when the window finishes loading
-        window.onload = function() {
-            loadProgressFromSession();
-            initAccordion();
-        };
+          function initAccordion() {
+              const questions = document.querySelectorAll('.question-text');
+              questions.forEach(q => {
+                  q.addEventListener('click', () => {
+                      q.classList.toggle('active');
+                      const info = q.parentNode.querySelector('.tech-info');
+                      if (info) info.classList.toggle('active');
+                  });
+              });
+          }
+
+          // Call loadCheckboxStates when the window finishes loading
+          window.onload = function() {
+              loadProgressFromSession();
+              initAccordion();
+          };
     </script>
-</body>
+  </body>
 </html>
