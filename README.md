@@ -1,4 +1,4 @@
-# DSA Topics List
+# DSA Topics List Patterns Wise
 
 ## 1. Arrays
 - Basics (traversal, insertion, deletion)
