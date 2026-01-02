@@ -1,0 +1,47 @@
+
+### Two Pointer Technique
+
+The **two-pointer technique** is an efficient algorithm primarily used for problems involving sorted arrays or linked lists. The core idea is to use two pointers to iterate through the data structure, moving them according to specific conditions to find a solution. This approach can often reduce the time complexity from a brute-force O(n^2) down to O(n).
+
+There are two main patterns for the two-pointer technique:
+
+#### 1. Opposite-End Pointers (Converging Pointers)
+
+In this pattern, one pointer starts at the beginning of the array (the `left` or `start` pointer) and the other starts at the end (the `right` or `end` pointer). They move towards each other until they meet or cross.
+
+**When to Use It:**
+*   Finding a pair of elements in a **sorted array** that sum up to a specific target.
+*   Searching for a palindrome in a string.
+*   Problems where you need to find two elements that satisfy a condition from opposite ends of the array.
+
+**Example: Find a pair that sums to a target `X` in a sorted array.**
+1.  Initialize `left = 0` and `right = array.length - 1`.
+2.  Loop as long as `left < right`.
+3.  Calculate the `currentSum = array[left] + array[right]`.
+4.  If `currentSum` is equal to the `target`, you've found the pair.
+5.  If `currentSum` is less than the `target`, you need a larger sum, so you move the `left` pointer to the right (`left++`).
+6.  If `currentSum` is greater than the `target`, you need a smaller sum, so you move the `right` pointer to the left (`right--`).
+
+#### 2. Same-End Pointers (Fast and Slow Pointers)
+
+In this pattern, both pointers start at or near the beginning of the data structure, but one pointer (the `fast` pointer) moves at a faster pace than the other (the `slow` pointer).
+
+**When to Use It:**
+*   Detecting cycles in a linked list (Floyd's Tortoise and Hare algorithm).
+*   Finding the middle element of a linked list.
+*   Problems involving subarrays or subsequences where you need to maintain a "window" of elements.
+
+**Example: Detect a cycle in a linked list.**
+1.  Initialize both `slow` and `fast` pointers to the head of the list.
+2.  In each iteration, move `slow` one step (`slow = slow.next`) and `fast` two steps (`fast = fast.next.next`).
+3.  If the `fast` pointer reaches the end of the list (`null`), there is no cycle.
+4.  If at any point `slow` and `fast` point to the same node, a cycle is detected.
+
+### Summary
+
+| Pattern                 | Pointers Initialization          | Movement                               | Common Use Cases                                |
+| ----------------------- | -------------------------------- | -------------------------------------- | ----------------------------------------------- |
+| **Opposite-End**        | `left = 0`, `right = n-1`        | Move towards each other (converge)     | Sorted arrays, finding pairs, palindromes       |
+| **Same-End**            | `slow = 0`, `fast = 0`           | Move in the same direction, diff speeds| Linked lists, cycle detection, finding middle   |
+
+By using two pointers, you can process the elements of a data structure in a single pass, making your algorithm more efficient in terms of both time and space.

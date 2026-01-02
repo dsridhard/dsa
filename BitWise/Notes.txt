@@ -1,0 +1,480 @@
+______________________________________________________________________
+___________
+            BITWISE OPERATIONS - NOTES
+______________________________________________________________________
+____________
+
+
+Definition 
+BitWise  operation are operations that work on individual (0s and 1s) of a numbers
+Number are stored in binary format inside the computer.
+
+5=101
+8=1000
+13=1101
+16=10000
+24=110000
+
+Each position represents a power of 2.
+
+Bit position : 3  2  1  0
+value:         8  4  2  1
+Binary (13):   1  1  0  1
+
+Bit Wise Operators
+ AND (&)
+
+ 1&1=1
+ 1&0=0
+ 0&1=0
+ 0&0=0
+
+ used for:
+ 
+- Checking if a number is even or odd ( `number & 1 == 0` for even, `number & 1 == 1` for odd).
+- Clearing a specific bit.- Clearing the least significant bit (LSB).
+- Checking if a specific bit is set.- Checking if a number is a power of two (`number > 0 && (number & (number - 1)) == 0`).
+- Extracting a submask.- Isolating a specific bit.- Checking if a number is a power of two (`number > 0 && (number & (number - 1)) == 0`).
+
+
+
+ OR (|) 
+
+ 1|1=1
+ 1|0=1
+ 0|1=1
+ 0|0=0
+ 
+ used for:
+ 
+- Setting a specific bit.- Including a bit in a mask.
+- Combining flags.- Toggling bits.
+
+
+ XOR (^)
+ 1^1=0
+ 1^0=1
+ 0^1=1
+ 0^0=0
+
+ used for:
+ 
+- Swapping two numbers without a temporary variable.- Encrypting and decrypting data.
+- Finding the unique number in an array where all other numbers appear twice.- Finding the missing number in a sequence (if the sum of numbers can be calculated).
+- Toggling a specific bit.- Checking if two numbers are different.
+
+
+Not(~)
+-5=-6
+
+used for :
+- Inverting all bits.- Toggling bits.
+- Performing one's complement.- Performing two's complement (in combination with addition).
+
+
+Shift Operators
+Left Shift (<<)
+5 << 1 = 10
+(101 -> 1010)
+
+used for:
+- Multiplying a number by powers of 2.- Setting a specific bit.
+- Creating powers of 2.- Generating powers of 2.
+- Fast multiplication.- Efficiently extracting bits from a number.
+
+
+Right Shift (>>)
+5 >> 1 = 2
+(101 -> 10)
+
+used for:
+- Dividing a number by powers of 2.- Extracting bits from a number.
+- Fast division.- Extracting the sign bit.- Efficiently extracting bits from a number.
+
+
+
+
+
+
+BitWise AND , OR  , XOR of two numbers
+
+operators
+
+operators           Symbol          Meaning
+AND                   &             Both bits must be 1 
+OR                    `             `
+XOR                   ^             Bits are different
+NOT                   -             Flip bits 
+Left Shift            <<            Multiply by 2
+Right Shift           >>            Divide by 2
+
+Bitwise Operations in Python
+
+```python
+# AND operator
+a = 5  # 0101
+b = 3  # 0011
+print(f"a & b = {a & b}")  # Output: 1 (0001)
+
+# OR operator
+a = 5  # 0101
+b = 3  # 0011
+print(f"a | b = {a | b}")  # Output: 7 (0111)
+
+# XOR operator
+a = 5  # 0101
+b = 3  # 0011
+print(f"a ^ b = {a ^ b}")  # Output: 6 (0110)
+
+# NOT operator (bitwise complement)
+a = 5  # 0101
+print(f"~a = {~a}")  # Output: -6 (inverts all bits, then interprets as signed integer)
+
+# Left Shift operator
+a = 5  # 0101
+print(f"a << 1 = {a << 1}")  # Output: 10 (1010)
+print(f"a << 2 = {a << 2}")  # Output: 20 (10100)
+
+# Right Shift operator
+a = 10 # 1010
+print(f"a >> 1 = {a >> 1}") # Output: 5 (0101)
+a = 5  # 0101
+print(f"a >> 1 = {a >> 1}") # Output: 2 (0010)
+# Common Bitwise Operations
+
+# Check if a number is even or odd
+def is_even(n):
+    return (n & 1) == 0
+
+def is_odd(n):
+    return (n & 1) == 1
+
+print(f"Is 4 even? {is_even(4)}") # Output: True
+print(f"Is 7 odd? {is_odd(7)}")   # Output: True
+
+# Check if a specific bit is set (1-indexed position)
+def is_bit_set(n, pos):
+    return (n >> (pos - 1)) & 1 == 1
+
+print(f"Is bit 3 set in 5 (0101)? {is_bit_set(5, 3)}") # Output: True (bit 3 is 1)
+print(f"Is bit 2 set in 5 (0101)? {is_bit_set(5, 2)}") # Output: False (bit 2 is 0)
+
+# Set a specific bit (1-indexed position)
+def set_bit(n, pos):
+    return n | (1 << (pos - 1))
+
+print(f"Set bit 2 in 5 (0101): {set_bit(5, 2)}") # Output: 7 (0111)
+print(f"Set bit 4 in 5 (0101): {set_bit(5, 4)}") # Output: 13 (1101)
+
+# Clear a specific bit (1-indexed position)
+def clear_bit(n, pos):
+    return n & (~(1 << (pos - 1)))
+
+print(f"Clear bit 3 in 5 (0101): {clear_bit(5, 3)}") # Output: 1 (0001)
+print(f"Clear bit 1 in 5 (0101): {clear_bit(5, 1)}") # Output: 4 (0100)
+
+# Toggle a specific bit (1-indexed position)
+def toggle_bit(n, pos):
+    return n ^ (1 << (pos - 1))
+
+print(f"Toggle bit 2 in 5 (0101): {toggle_bit(5, 2)}") # Output: 7 (0111)
+print(f"Toggle bit 4 in 5 (0101): {toggle_bit(5, 4)}") # Output: 13 (1101)
+# Count set bits (number of 1s) in a number
+def count_set_bits(n):
+    count = 0
+    while n > 0:
+        n &= (n - 1)  # Brian Kernighan's algorithm
+        count += 1
+    return count
+
+print(f"Number of set bits in 7 (0111): {count_set_bits(7)}")   # Output: 3
+print(f"Number of set bits in 10 (1010): {count_set_bits(10)}") # Output: 2
+
+# Check if a number is a power of two
+def is_power_of_two(n):
+    return n > 0 and (n & (n - 1)) == 0
+
+print(f"Is 8 a power of two? {is_power_of_two(8)}")   # Output: True
+print(f"Is 6 a power of two? {is_power_of_two(6)}")   # Output: False
+print(f"Is 0 a power of two? {is_power_of_two(0)}")   # Output: False
+
+# Get the most significant bit (MSB) position
+import math
+def get_msb_pos(n):
+    if n == 0:
+        return -1 # Or raise an error
+    return math.floor(math.log2(n)) + 1 # 1-indexed position
+
+print(f"MSB position of 5 (0101): {get_msb_pos(5)}")   # Output: 3
+print(f"MSB position of 10 (1010): {get_msb_pos(10)}") # Output: 4
+
+# Get the least significant bit (LSB)
+def get_lsb(n):
+    return n & (-n) # Returns the value of the LSB
+
+print(f"LSB of 6 (0110): {get_lsb(6)}") # Output: 2 (0010)
+print(f"LSB of 5 (0101): {get_lsb(5)}") # Output: 1 (0001)
+
+# Clear the least significant bit (LSB)
+def clear_lsb(n):
+    return n & (n - 1)
+
+print(f"Clear LSB of 6 (0110): {clear_lsb(6)}") # Output: 4 (0100)
+print(f"Clear LSB of 5 (0101): {clear_lsb(5)}") # Output: 4 (0100)
+# Get the nth bit (0-indexed position)
+def get_bit(n, pos):
+    return (n >> pos) & 1
+
+print(f"Get bit 0 of 5 (0101): {get_bit(5, 0)}") # Output: 1
+print(f"Get bit 2 of 5 (0101): {get_bit(5, 2)}") # Output: 1
+
+# Turn off the rightmost set bit
+def turn_off_rightmost_set_bit(n):
+    return n & (n - 1)
+
+print(f"Turn off rightmost set bit of 6 (0110): {turn_off_rightmost_set_bit(6)}") # Output: 4 (0100)
+print(f"Turn off rightmost set bit of 5 (0101): {turn_off_rightmost_set_bit(5)}") # Output: 4 (0100)
+
+# Check if two numbers have opposite signs
+def has_opposite_signs(a, b):
+    return (a ^ b) < 0
+
+print(f"Do 5 and -5 have opposite signs? {has_opposite_signs(5, -5)}") # Output: True
+print(f"Do 5 and 10 have opposite signs? {has_opposite_signs(5, 10)}") # Output: False
+
+# Swap two numbers using XOR
+def swap_numbers_xor(a, b):
+    a = a ^ b
+    b = a ^ b
+    a = a ^ b
+    return a, b
+
+x, y = 10, 20
+x, y = swap_numbers_xor(x, y)
+print(f"Swapped numbers using XOR: x={x}, y={y}") # Output: x=20, y=10
+
+# Find the unique number in an array where all others appear twice
+def find_unique_number(arr):
+    unique = 0
+    for num in arr:
+        unique ^= num
+    return unique
+
+print(f"Unique number in [1, 2, 3, 2, 1]: {find_unique_number([1, 2, 3, 2, 1])}") # Output: 3
+
+# Find the missing number in a sequence (if the sum of numbers can be calculated)
+def find_missing_number(arr, n):
+    # n is the expected range of numbers (e.g., 1 to n)
+    # XOR all numbers from 1 to n
+    xor_all = 0
+    for i in range(1, n + 1):
+        xor_all ^= i
+    
+    # XOR all numbers in the given array
+    xor_arr = 0
+    for num in arr:
+        xor_arr ^= num
+        
+    # The missing number is the result of XORing these two
+    return xor_all ^ xor_arr
+
+print(f"Missing number in [1, 2, 4, 5] (range 1-5): {find_missing_number([1, 2, 4, 5], 5)}") # Output: 3
+print(f"Missing number in [0, 1, 3] (range 0-3): {find_missing_number([0, 1, 3], 3)}") # Output: 2
+
+# Convert decimal to binary string
+def dec_to_bin(n):
+    return bin(n)[2:]
+
+print(f"Binary representation of 13: {dec_to_bin(13)}") # Output: 1101
+
+# Convert binary string to decimal
+def bin_to_dec(binary_str):
+    return int(binary_str, 2)
+
+print(f"Decimal representation of '1101': {bin_to_dec('1101')}") # Output: 13
+
+# Check if a number is even or odd without modulo operator
+def is_even_no_modulo(n):
+    return not (n & 1)
+
+def is_odd_no_modulo(n):
+    return bool(n & 1)
+
+print(f"Is 10 even (no modulo)? {is_even_no_modulo(10)}") # Output: True
+print(f"Is 11 odd (no modulo)? {is_odd_no_modulo(11)}")   # Output: True
+
+# Multiply by 2 using left shift
+def multiply_by_two(n):
+    return n << 1
+
+print(f"5 multiplied by 2: {multiply_by_two(5)}") # Output: 10
+
+# Divide by 2 using right shift
+def divide_by_two(n):
+    return n >> 1
+
+print(f"10 divided by 2: {divide_by_two(10)}") # Output: 5
+
+# Absolute value without branching
+def abs_value(n):
+    mask = n >> 31 # For 32-bit integers. Adjust for other sizes.
+    return (n + mask) ^ mask
+
+print(f"Absolute value of -5: {abs_value(-5)}") # Output: 5
+print(f"Absolute value of 5: {abs_value(5)}")   # Output: 5
+
+# Find maximum of two numbers without branching
+def max_no_branch(a, b):
+    return a - ((a - b) & ((a - b) >> 31)) # For 32-bit integers
+
+print(f"Max of 10 and 20: {max_no_branch(10, 20)}") # Output: 20
+print(f"Max of 5 and 15: {max_no_branch(5, 15)}")   # Output: 15
+# Find minimum of two numbers without branching
+def min_no_branch(a, b):
+    return b + ((a - b) & ((a - b) >> 31)) # For 32-bit integers
+
+print(f"Min of 10 and 20: {min_no_branch(10, 20)}") # Output: 10
+print(f"Min of 5 and 15: {min_no_branch(5, 15)}")   # Output: 5
+
+# Check if a number is negative
+def is_negative(n):
+    return (n >> 31) & 1 == 1 # For 32-bit integers
+
+print(f"Is -5 negative? {is_negative(-5)}") # Output: True
+print(f"Is 5 negative? {is_negative(5)}")   # Output: False
+
+# Reverse bits of an integer (example for 8-bit)
+def reverse_bits_8bit(n):
+    n = (n & 0x55) << 1 | (n >> 1) & 0x55
+    n = (n & 0x33) << 2 | (n >> 2) & 0x33
+    n = (n & 0x0F) << 4 | (n >> 4) & 0x0F
+    return n
+
+print(f"Reverse bits of 0b00001011 (11): {bin(reverse_bits_8bit(11))}") # Output: 0b11010000 (208)
+
+# Count total bits in a number
+def count_total_bits(n):
+    if n == 0:
+        return 1 # Or 0 depending on definition
+    return n.bit_length()
+
+print(f"Total bits in 13: {count_total_bits(13)}") # Output: 4
+print(f"Total bits in 0: {count_total_bits(0)}")   # Output: 1
+
+# Check if all bits are set in a range (e.g., from 0 to k-1)
+def are_all_bits_set(n, k):
+    return (n & (2**k - 1)) == (2**k - 1)   
+
+print(f"Are all bits set in 7 (0111) for k=3? {are_all_bits_set(7, 3)}")   # Output: True
+print(f"Are all bits set in 6 (0110) for k=3? {are_all_bits_set(6, 3)}")   # Output: False
+
+# Get the number of bits required to represent a number
+def num_bits_required(n):
+    if n == 0:
+        return 1
+    return n.bit_length()
+
+print(f"Number of bits required for 13: {num_bits_required(13)}") # Output: 4
+print(f"Number of bits required for 0: {num_bits_required(0)}")   # Output: 1
+
+# Check if a number is a power of 4
+def is_power_of_four(n):
+    return n > 0 and (n & (n - 1)) == 0 and (n & 0xAAAAAAAA) == 0
+
+print(f"Is 16 a power of four? {is_power_of_four(16)}") # Output: True
+print(f"Is 8 a power of four? {is_power_of_four(8)}")   # Output: False
+
+# Find the position of the only set bit (if only one is set)
+def find_only_set_bit_pos(n):
+    if not is_power_of_two(n):
+        return -1 # Or raise an error if not a power of two
+    return n.bit_length()
+
+print(f"Position of set bit in 8 (1000): {find_only_set_bit_pos(8)}") # Output: 4
+print(f"Position of set bit in 5 (0101): {find_only_set_bit_pos(5)}") # Output: -1
+
+# Count the number of bits to flip to convert A to B
+def count_bits_to_flip(a, b):
+    xor_result = a ^ b
+    count = 0
+    while xor_result > 0:
+        xor_result &= (xor_result - 1)
+        count +=
+
+        1
+    return count
+
+print(f"Bits to flip from 29 (11101) to 15 (01111): {count_bits_to_flip(29, 15)}") # Output: 2 (11101 -> 01111, flip 4th and 5th bit from right)
+
+# Add two numbers without using arithmetic operators (+, -)
+def add_without_arithmetic(a, b):
+    while b != 0:
+        carry = a & b
+        a = a ^ b
+        b = carry << 1
+    return a
+
+print(f"5 + 3 without arithmetic: {add_without_arithmetic(5, 3)}") # Output: 8
+print(f"10 + 7 without arithmetic: {add_without_arithmetic(10, 7)}") # Output: 17
+
+# Subtract two numbers without using arithmetic operators (+, -)
+def subtract_without_arithmetic(a, b):
+    # a - b is equivalent to a + (-b)
+    # -b can be represented as (~b + 1)
+    return add_without_arithmetic(a, add_without_arithmetic(~b, 1))
+
+print(f"5 - 3 without arithmetic: {subtract_without_arithmetic(5, 3)}") # Output: 2
+print(f"3 - 5 without arithmetic: {subtract_without_arithmetic(3, 5)}") # Output: -2
+
+# Multiply two numbers without using arithmetic operators (*, /)
+def multiply_without_arithmetic(a, b):
+    result = 0
+    while b != 0:
+        if (b & 1) != 0: # If the last bit of b is 1
+            result = add_without_arithmetic(result, a)
+        a <<= 1
+        b >>= 1
+    return result
+
+print(f"5 * 3 without arithmetic: {multiply_without_arithmetic(5, 3)}") # Output: 15
+print(f"10 * 7 without arithmetic: {multiply_without_arithmetic(10, 7)}") # Output: 70
+
+# Divide two numbers    
+# Divide two numbers without using arithmetic operators (*, /, %)
+def divide_without_arithmetic(dividend, divisor):
+    if divisor == 0:
+        raise ZeroDivisionError("Cannot divide by zero")
+    
+    # Handle signs
+    sign = -1 if (dividend < 0) ^ (divisor < 0) else 1
+    
+    dividend = abs(dividend)
+    divisor = abs(divisor)
+    
+    quotient = 0
+    temp_divisor = divisor
+    temp_quotient = 1
+
+    # Find the largest power of 2 such that (divisor << power) <= dividend
+    while temp_divisor <= dividend:
+        temp_divisor <<= 1
+        temp_quotient <<= 1
+    
+    # Now, temp_divisor is greater than dividend, so shift back once
+    temp_divisor >>= 1
+    temp_quotient >>= 1
+
+    while temp_quotient != 0:
+        if dividend >= temp_divisor:
+            dividend = subtract_without_arithmetic(dividend, temp_divisor)
+            quotient = add_without_arithmetic(quotient, temp_quotient)
+        temp_divisor >>= 1
+        temp_quotient >>= 1
+        
+    return quotient * sign
+
+print(f"10 / 3 without arithmetic: {divide_without_arithmetic(10, 3)}") # Output: 3
+print(f"7 / 2 without arithmetic: {divide_without_arithmetic(7, 2)}")   # Output: 3
+print(f"-10 / 3 without arithmetic: {divide_without_arithmetic(-10, 3)}") # Output: -3
+print(f"10 / -3 without arithmetic: {divide_without_arithmetic(10, -3)}") # Output: -3
+print(f"-10 / -3 without arithmetic: {divide_without_arithmetic(-10, -3)}") # Output: 3
