@@ -24,3 +24,15 @@ while (left < right) {
 }
 
 
+
+let k = 3
+
+// console.log(` right index is ${right} ,left index${left}`)
+while (left < right) {
+    if(left+right ===k){
+        left++;
+    right--;
+     console.log(`Element Found `)
+      }
+    
+}
