@@ -1,4 +1,4 @@
-// brute force method 
+// kandane alogorithm
 // declared array
 let arr = [1,2,-3,-4,-5]
 // window size
