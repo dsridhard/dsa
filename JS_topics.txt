@@ -1,0 +1,86 @@
+Scope & Hoisting
+Global/Function/Block Scope
+Temporal Dead Zone 
+
+
+Closure 
+Lexical scope 
+Real  use case 
+ Data hiding 
+ Callbacks
+ setTimeout in loops
+
+Execution Context & Call Stack
+Global Execution
+
+Asynchronous 
+
+Call Stack
+Web Api
+Callback Queue
+Microtask Queue
+Priority order
+
+
+Promise 
+state:pending,fullfiled,rejected
+.then(),.catch(),.finally()
+Promise chaining 
+Promise.all,race,any,allSettled
+
+
+async/await
+How it works internall 
+Error handing with try/catch
+Why async/await is better than callbacks
+
+Functions & This keyword
+this -Done 
+
+
+Call,Apply,Bind -Done
+
+
+Shallow vs Deep Copy
+spread operator
+Object.assign
+JSON method
+structuredClone(bnous)
+
+
+Garbage Collection(Basic)
+Memory leaks
+Closure holding reference
+
+Array methods 
+map,filter,reduce
+find,some,every
+sort
+
+
+
+
+Object Methods
+object.keys()
+object.values()
+object.entries()
+
+
+Destructuring
+
+
+
+React 
+
+
+Hooks 
+useState, useEffect, useContext
+useMemo,useRef
+
+Difference between vitural DOM
+why React is fast? 
+Virtual DOM + diffing algorithm
+Reconciliation
+React Router 
+React Redux
+JWT storage (Http Cookies)

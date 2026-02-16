@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>React & Redux – Complete Guide (Learning + Interview)</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 20px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    h1,
+    h2,
+    h3 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+    }
+
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 12px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .nav-btn {
+      display: inline-block;
+      padding: 10px 20px 10px 20px;
+      background-color: #0056b3;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .nav-btn:hover {
+      background-color: #004494;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>React & Redux – Complete Concepts with Definitions & Examples</h1>
+  <a href="./index.html" class="nav-btn">Back to Questions</a>
+  <!-- ================= REACT BASICS ================= -->
+  <div class="section">
+    <h2>1. React Fundamentals</h2>
+
+    <h3>Component</h3>
+    <p>
+      A React component is an independent, reusable piece of UI that defines how a portion
+      of the screen should appear and behave. Components help split the UI into manageable
+      parts and improve maintainability.
+    </p>
+    <pre><code>
+function Welcome() {
+  return &lt;h2&gt;Welcome to React&lt;/h2&gt;;
+}
+</code></pre>
+
+    <h3>JSX</h3>
+    <p>
+      JSX is a syntax extension for JavaScript that allows developers to write HTML-like code
+      inside JavaScript. JSX improves readability and is transformed into React elements at build time.
+    </p>
+    <pre><code>
+const element = &lt;h1&gt;Hello World&lt;/h1&gt;;
+</code></pre>
+
+    <h3>Props</h3>
+    <p>
+      Props are inputs passed from a parent component to a child component.
+      They are immutable (read-only) and enable components to be dynamic and reusable.
+    </p>
+    <pre><code>
+function User(props) {
+  return &lt;p&gt;Name: {props.name}&lt;/p&gt;;
+}
+
+&lt;User name="Sridhar" /&gt;
+</code></pre>
+
+    <h3>State</h3>
+    <p>
+      State is a built-in object that holds data which can change during a component’s lifecycle.
+      Whenever state changes, React re-renders the component automatically.
+    </p>
+    <pre><code>
+const [count, setCount] = React.useState(0);
+</code></pre>
+  </div>
+
+  <!-- ================= REACT HOOKS ================= -->
+  <div class="section">
+    <h2>2. React Hooks (All Important Hooks)</h2>
+
+    <h3>useState</h3>
+    <p>
+      useState allows functional components to store and update local state.
+      It returns the current state value and a function to update it.
+    </p>
+    <pre><code>
+const [age, setAge] = useState(25);
+setAge(age + 1);
+</code></pre>
+
+    <h3>useEffect</h3>
+    <p>
+      useEffect is used to perform side effects such as API calls, timers,
+      subscriptions, or DOM updates. It runs after rendering.
+    </p>
+    <pre><code>
+useEffect(() => {
+  console.log("Component Mounted");
+}, []);
+</code></pre>
+
+    <h3>useContext</h3>
+    <p>
+      useContext allows components to consume values from a Context directly,
+      avoiding deeply nested prop passing (prop drilling).
+    </p>
+    <pre><code>
+const theme = useContext(ThemeContext);
+</code></pre>
+
+    <h3>useReducer</h3>
+    <p>
+      useReducer is used to manage complex state logic using a reducer function.
+      It works similarly to Redux but is scoped to a component.
+    </p>
+    <pre><code>
+const [state, dispatch] = useReducer(reducer, initialState);
+</code></pre>
+
+    <h3>useRef</h3>
+    <p>
+      useRef creates a mutable reference that persists across renders.
+      It is commonly used to access DOM elements directly.
+    </p>
+    <pre><code>
+const inputRef = useRef();
+inputRef.current.focus();
+</code></pre>
+
+    <h3>useMemo</h3>
+    <p>
+      useMemo memoizes the result of an expensive computation so it does not
+      recalculate on every render unless dependencies change.
+    </p>
+    <pre><code>
+const total = useMemo(() => calculateTotal(price), [price]);
+</code></pre>
+
+    <h3>useCallback</h3>
+    <p>
+      useCallback memoizes a function reference to prevent unnecessary re-creation
+      of functions during re-renders.
+    </p>
+    <pre><code>
+const handleClick = useCallback(() => {
+  console.log("Clicked");
+}, []);
+</code></pre>
+
+    <h3>useLayoutEffect</h3>
+    <p>
+      useLayoutEffect runs synchronously after DOM mutations but before the browser paints.
+      It is used when layout measurements are required.
+    </p>
+    <pre><code>
+useLayoutEffect(() => {
+  // DOM measurement
+}, []);
+</code></pre>
+
+    <h3>useImperativeHandle</h3>
+    <p>
+      useImperativeHandle customizes the instance value exposed to parent components
+      when using refs.
+    </p>
+    <pre><code>
+useImperativeHandle(ref, () => ({
+  focus
+}));
+</code></pre>
+  </div>
+
+  <!-- ================= REDUX ================= -->
+  <div class="section">
+    <h2>3. Redux Core Concepts</h2>
+
+    <h3>Action</h3>
+    <p>
+      An action is a plain JavaScript object that describes an event that occurred
+      in the application. It must contain a type property.
+    </p>
+    <pre><code>
+{ type: "INCREMENT" }
+</code></pre>
+
+    <h3>Reducer</h3>
+    <p>
+      A reducer is a pure function that takes the current state and an action,
+      and returns a new updated state without mutating the original state.
+    </p>
+    <pre><code>
+const reducer = (state = 0, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+    default:
+      return state;
+  }
+};
+</code></pre>
+
+    <h3>Store</h3>
+    <p>
+      The store is the central object that holds the entire application state.
+      It provides methods to get state, dispatch actions, and subscribe to updates.
+    </p>
+    <pre><code>
+const store = createStore(reducer);
+</code></pre>
+
+    <h3>Provider</h3>
+    <p>
+      Provider makes the Redux store available to all nested React components
+      using React Context.
+    </p>
+    <pre><code>
+&lt;Provider store={store}&gt;
+  &lt;App /&gt;
+&lt;/Provider&gt;
+</code></pre>
+  </div>
+
+  <!-- ================= REACT REDUX ================= -->
+  <div class="section">
+    <h2>4. React Redux Hooks</h2>
+
+    <h3>useSelector</h3>
+    <p>
+      useSelector allows a React component to read specific data
+      from the Redux store.
+    </p>
+    <pre><code>
+const count = useSelector(state => state.count);
+</code></pre>
+
+    <h3>useDispatch</h3>
+    <p>
+      useDispatch returns the store’s dispatch function,
+      used to send actions to the Redux store.
+    </p>
+    <pre><code>
+dispatch({ type: "INCREMENT" });
+</code></pre>
+  </div>
+
+  <!-- ================= PERFORMANCE ================= -->
+  <div class="section">
+    <h2>5. Performance & Best Practices</h2>
+
+    <h3>React.memo</h3>
+    <p>
+      React.memo prevents unnecessary re-renders by memoizing
+      the rendered output of a component.
+    </p>
+    <pre><code>
+const MemoComponent = React.memo(Component);
+</code></pre>
+
+    <h3>Lazy Loading</h3>
+    <p>
+      Lazy loading loads components only when needed,
+      improving initial load performance.
+    </p>
+    <pre><code>
+const Page = React.lazy(() => import("./Page"));
+</code></pre>
+
+    <h3>Error Boundary</h3>
+    <p>
+      Error Boundaries catch JavaScript errors in child components
+      and prevent the entire app from crashing.
+    </p>
+    <pre><code>
+componentDidCatch(error, info) {}
+</code></pre>
+  </div>
+  <div class="section">
+    <h2>6. Redux Toolkit (RTK)</h2>
+
+    <h3>What is Redux Toolkit?</h3>
+    <p>
+      Redux Toolkit is the official, recommended way to write Redux logic.
+      It simplifies Redux development by reducing boilerplate code,
+      handling immutability internally, and providing best practices by default.
+    </p>
+
+    <h3>createSlice</h3>
+    <p>
+      createSlice is a function that automatically generates action creators
+      and reducer logic in one place. It uses Immer internally, so we can write
+      "mutable-looking" code safely.
+    </p>
+    <pre><code>
+import { createSlice } from "@reduxjs/toolkit";
+
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { value: 0 },
+  reducers: {
+    increment: state => {
+      state.value += 1;
+    },
+    decrement: state => {
+      state.value -= 1;
+    }
+  }
+});
+
+export const { increment, decrement } = counterSlice.actions;
+export default counterSlice.reducer;
+</code></pre>
+
+    <h3>configureStore</h3>
+    <p>
+      configureStore creates the Redux store with sensible defaults.
+      It automatically sets up Redux DevTools and middleware like thunk.
+    </p>
+    <pre><code>
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counterSlice";
+
+const store = configureStore({
+  reducer: {
+    counter: counterReducer
+  }
+});
+
+export default store;
+</code></pre>
+
+    <h3>RTK with React</h3>
+    <p>
+      Redux Toolkit works seamlessly with React using the same
+      useSelector and useDispatch hooks.
+    </p>
+    <pre><code>
+const count = useSelector(state => state.counter.value);
+dispatch(increment());
+</code></pre>
+  </div>
+
+  <!-- ================= INTERVIEW Q&A ================= -->
+  <div class="section">
+    <h2>7. Interview Questions & Answers</h2>
+
+    <h3>React – Core</h3>
+
+    <div class="qa">
+      <strong>Q: What is React?</strong>
+      <p>
+        React is a JavaScript library for building user interfaces using reusable components.
+        It follows a component-based architecture and uses a virtual DOM for efficient updates.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: Difference between Props and State?</strong>
+      <p>
+        Props are passed from parent to child and are read-only.
+        State is managed within a component and can change over time.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: What is JSX?</strong>
+      <p>
+        JSX is a syntax extension that allows writing HTML-like code in JavaScript.
+        It improves readability and is compiled to React.createElement().
+      </p>
+    </div>
+
+    <h3>React Hooks</h3>
+
+    <div class="qa">
+      <strong>Q: Why Hooks were introduced?</strong>
+      <p>
+        Hooks allow using state and lifecycle features in functional components,
+        eliminating the need for class components and improving code reuse.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: useEffect vs useLayoutEffect?</strong>
+      <p>
+        useEffect runs asynchronously after render.
+        useLayoutEffect runs synchronously after DOM updates but before painting.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: Difference between useMemo and useCallback?</strong>
+      <p>
+        useMemo memoizes values.
+        useCallback memoizes functions.
+        Both are used for performance optimization.
+      </p>
+    </div>
+
+    <h3>Redux</h3>
+
+    <div class="qa">
+      <strong>Q: What problem does Redux solve?</strong>
+      <p>
+        Redux solves the problem of managing shared global state
+        and avoiding complex prop drilling in large applications.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: What are the core principles of Redux?</strong>
+      <p>
+        1. Single source of truth
+        2. State is read-only
+        3. Changes are made using pure functions (reducers)
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: Why reducers must be pure functions?</strong>
+      <p>
+        Pure functions ensure predictable state updates,
+        making debugging and testing easier.
+      </p>
+    </div>
+
+    <h3>Redux Toolkit</h3>
+
+    <div class="qa">
+      <strong>Q: Why Redux Toolkit is preferred over Redux?</strong>
+      <p>
+        Redux Toolkit reduces boilerplate, handles immutability automatically,
+        and enforces best practices, making Redux easier and safer to use.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: How can we mutate state in RTK reducers?</strong>
+      <p>
+        RTK uses Immer internally, which tracks mutations and converts them
+        into immutable updates safely.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: Redux vs Context API?</strong>
+      <p>
+        Context API is good for small global state.
+        Redux is better for complex state logic, debugging, and large applications.
+      </p>
+    </div>
+    <div class="qa">
+      <strong>Q: Why React is fast?</strong>
+      <p>
+        React uses Virtual DOM, reconciliation, and batching updates to reduce
+        direct DOM manipulation.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: Fragment vs div?</strong>
+      <p>
+        Fragments group elements without adding extra DOM nodes,
+        keeping the DOM clean.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: Why keys are important?</strong>
+      <p>
+        Keys help React efficiently update lists by identifying changed elements.
+      </p>
+    </div>
+
+    <h3>Hooks</h3>
+
+    <div class="qa">
+      <strong>Q: useEffect dependency array?</strong>
+      <p>
+        Controls when the effect runs. Empty array runs once, values cause re-run on change.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: useMemo vs useCallback?</strong>
+      <p>
+        useMemo memoizes values, useCallback memoizes functions.
+      </p>
+    </div>
+
+    <h3>State Management</h3>
+
+    <div class="qa">
+      <strong>Q: Redux vs Context?</strong>
+      <p>
+        Context is for small global state.
+        Redux is for complex, scalable state management.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: Why Redux Toolkit?</strong>
+      <p>
+        RTK reduces boilerplate, ensures immutability, and enforces best practices.
+      </p>
+    </div>
+
+    <h3>Routing</h3>
+
+    <div class="qa">
+      <strong>Q: SPA vs MPA?</strong>
+      <p>
+        SPA loads once and updates UI dynamically.
+        MPA reloads pages from server.
+      </p>
+    </div>
+
+    <h3>Performance</h3>
+
+    <div class="qa">
+      <strong>Q: How to optimize large React apps?</strong>
+      <p>
+        Code splitting, lazy loading, memoization, virtualization, caching.
+      </p>
+    </div>
+
+    <h3>Real-World</h3>
+
+    <div class="qa">
+      <strong>Q: How do you protect routes?</strong>
+      <p>
+        Using authentication checks and redirecting unauthorized users.
+      </p>
+    </div>
+
+    <div class="qa">
+      <strong>Q: How do you handle API errors?</strong>
+      <p>
+        Centralized error handling, try/catch, global state, and error boundaries.
+      </p>
+    </div>
+  </div>
+  <h2>1. React Frontend System Design (Interview Perspective)</h2>
+
+  <h3>What is Frontend System Design?</h3>
+  <p>
+    Frontend system design focuses on structuring a scalable, maintainable,
+    and performant UI architecture. It covers component structure, state management,
+    routing, data flow, and performance optimization.
+  </p>
+
+  <h3>Typical React Architecture</h3>
+  <pre><code>
+src/
+ ├── components/     // Reusable UI components
+ ├── pages/          // Route-based pages
+ ├── features/       // Redux slices (RTK)
+ ├── services/       // API calls
+ ├── hooks/          // Custom hooks
+ ├── routes/         // App routing
+ └── App.js
+</code></pre>
+
+  <h3>Data Flow</h3>
+  <p>
+    React follows unidirectional data flow. Data moves from parent to child via props.
+    Global state is managed using Redux Toolkit and accessed via hooks.
+  </p>
+
+  <h3>Performance Considerations</h3>
+  <ul>
+    <li>Component splitting</li>
+    <li>Lazy loading & Suspense</li>
+    <li>Memoization (memo, useMemo, useCallback)</li>
+    <li>List virtualization</li>
+  </ul>
+
+  <h3>Security in Frontend</h3>
+  <ul>
+    <li>JWT token handling</li>
+    <li>Protected routes</li>
+    <li>XSS prevention</li>
+  </ul>
+  <div class="section">
+    <h2>2. End-to-End React App (Router + RTK + Forms)</h2>
+
+    <h3>Application Flow</h3>
+    <p>
+      User submits form → Dispatch Redux action → Update global state →
+      Navigate using Router → Render updated UI
+    </p>
+
+    <h3>Redux Toolkit Slice</h3>
+    <pre><code>
+import { createSlice } from "@reduxjs/toolkit";
+
+const userSlice = createSlice({
+  name: "user",
+  initialState: { name: "" },
+  reducers: {
+    setUser: (state, action) => {
+      state.name = action.payload;
+    }
+  }
+});
+
+export const { setUser } = userSlice.actions;
+export default userSlice.reducer;
+</code></pre>
+
+    <h3>Store Configuration</h3>
+    <pre><code>
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./userSlice";
+
+export const store = configureStore({
+  reducer: {
+    user: userReducer
+  }
+});
+</code></pre>
+
+    <h3>Form Component</h3>
+    <pre><code>
+function Login() {
+  const [name, setName] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const submit = () => {
+    dispatch(setUser(name));
+    navigate("/dashboard");
+  };
+
+  return (
+    <input onChange={e => setName(e.target.value)} />
+  );
+}
+</code></pre>
+
+
+  </div>
+</body>
+
+</html>
